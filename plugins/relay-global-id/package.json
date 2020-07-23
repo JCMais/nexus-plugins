@@ -41,6 +41,7 @@
   },
   "peerDependencies": {
     "@nexus/schema": "^0.14.0",
+    "graphql": "^14.5.8",
     "graphql-relay": "^0.6.0"
   },
   "engines": {
