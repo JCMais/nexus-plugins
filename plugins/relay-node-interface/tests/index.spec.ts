@@ -142,7 +142,7 @@ const testPluginConfig = {
 }
 
 describe('relayNodeInterfacePlugin', () => {
-  describe.only('basic behavior', () => {
+  describe('basic behavior', () => {
     it('should work correctly', () => {
       const schema = testSchema(testPluginConfig)
       expect(printType(schema.getType('Query')!)).toMatchSnapshot()

@@ -1,0 +1,47 @@
+{
+  "name": "@jcm/nexus-plugin-field-authentication",
+  "version": "0.0.0",
+  "description": "Adds a new field config \"authentication\" that should be used to determine if the field should be resolved or not",
+  "keywords": [
+    "nexus",
+    "plugin",
+    "nexus-plugin",
+    "graphql",
+    "authorization"
+  ],
+  "homepage": "https://github.com/JCMais/nexus-plugins/blob/plugins/field-authentication",
+  "license": "MIT",
+  "author": "Jonathan Cardoso <me@jonathancardoso.com>",
+  "main": "dist",
+  "module": "dist-esm",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "dist-esm",
+    "src",
+    "LICENSE.md",
+    "README.md",
+    "yarn.lock"
+  ],
+  "scripts": {
+    "build:dist": "yarn -s clean:dist && tsc -p tsconfig.cjs.json --pretty && tsc -p tsconfig.esm.json --pretty",
+    "clean:dist": "rimraf ./dist ./dist-esm",
+    "install-peers": "install-self-peers -- --ignore-scripts",
+    "prepare": "yarn install-peers",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:coverage:watch": "jest --coverage --watch",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "@team-griffin/install-self-peers": "1.1.1",
+    "@types/graphql-relay": "0.4.5"
+  },
+  "peerDependencies": {
+    "@nexus/schema": "^0.14.0",
+    "graphql": "^14.5.8"
+  },
+  "engines": {
+    "node": ">= 12"
+  }
+}

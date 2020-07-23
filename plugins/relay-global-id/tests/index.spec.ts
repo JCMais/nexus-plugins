@@ -75,7 +75,7 @@ const testSchema = (
   })
 
 describe('relayGlobalIdPlugin', () => {
-  describe.only('basic behavior', () => {
+  describe('basic behavior', () => {
     it('should work correctly', () => {
       const schema = testSchema({})
       expect(printType(schema.getType('User')!)).toMatchSnapshot()
