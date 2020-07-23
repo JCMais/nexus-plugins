@@ -1,0 +1,32 @@
+{
+  "name": "@jcm/nexus-plugin-sample",
+  "version": "0.0.0",
+  "description": "Sample package",
+  "keywords": [],
+  "homepage": "https://github.com/JCMais/nexus-plugins/blob/plugins/sample",
+  "license": "MIT",
+  "author": "Jonathan Cardoso <me@jonathancardoso.com>",
+  "main": "dist",
+  "module": "dist-esm",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "dist-esm",
+    "src",
+    "LICENSE.md",
+    "README.md",
+    "yarn.lock"
+  ],
+  "scripts": {
+    "build:dist": "yarn -s clean:dist && tsc -p tsconfig.cjs.json --pretty && tsc -p tsconfig.esm.json --pretty",
+    "clean:dist": "rimraf ./dist ./dist-esm",
+    "prepare": "install-self-peers -- --ignore-scripts",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:coverage:watch": "jest --coverage --watch",
+    "test:watch": "jest --watch"
+  },
+  "engines": {
+    "node": ">= 12"
+  }
+}

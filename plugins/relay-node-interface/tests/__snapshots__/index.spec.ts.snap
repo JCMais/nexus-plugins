@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`relayNodeInterfacePlugin basic behavior should resolve all fields correctly 1`] = `
+Object {
+  "data": Object {
+    "nodes": Array [
+      Object {
+        "__typename": "User",
+        "id": "8a291df8-bbcf-11ea-9db0-ff6b23713451",
+        "name": "user-a",
+      },
+      Object {
+        "__typename": "Post",
+        "id": "710c173a-c2af-11ea-86f1-83226be355fb",
+      },
+      Object {
+        "__typename": "User",
+        "id": "710c15fa-c2af-11ea-86f1-7f51ff98b69c",
+        "name": "user-b",
+      },
+      Object {
+        "__typename": "Post",
+        "id": "a7a5c06e-c2d9-11ea-86f1-bfb838f3b7c6",
+      },
+    ],
+    "post1": Object {
+      "__typename": "Post",
+      "id": "710c173a-c2af-11ea-86f1-83226be355fb",
+    },
+    "post2": Object {
+      "__typename": "Post",
+      "id": "a7a5c06e-c2d9-11ea-86f1-bfb838f3b7c6",
+    },
+    "user1": Object {
+      "__typename": "User",
+      "id": "8a291df8-bbcf-11ea-9db0-ff6b23713451",
+      "name": "user-a",
+    },
+    "user2": Object {
+      "__typename": "User",
+      "id": "710c15fa-c2af-11ea-86f1-7f51ff98b69c",
+      "name": "user-b",
+    },
+  },
+}
+`;
+
+exports[`relayNodeInterfacePlugin basic behavior should resolve not found fields as null correctly 1`] = `
+Object {
+  "data": Object {
+    "nodes": Array [
+      Object {
+        "__typename": "User",
+        "id": "8a291df8-bbcf-11ea-9db0-ff6b23713451",
+        "name": "user-a",
+      },
+      null,
+      Object {
+        "__typename": "User",
+        "id": "710c15fa-c2af-11ea-86f1-7f51ff98b69c",
+        "name": "user-b",
+      },
+      Object {
+        "__typename": "Post",
+        "id": "a7a5c06e-c2d9-11ea-86f1-bfb838f3b7c6",
+      },
+    ],
+    "post1": null,
+    "post2": Object {
+      "__typename": "Post",
+      "id": "a7a5c06e-c2d9-11ea-86f1-bfb838f3b7c6",
+    },
+    "user1": Object {
+      "__typename": "User",
+      "id": "8a291df8-bbcf-11ea-9db0-ff6b23713451",
+      "name": "user-a",
+    },
+    "user2": Object {
+      "__typename": "User",
+      "id": "710c15fa-c2af-11ea-86f1-7f51ff98b69c",
+      "name": "user-b",
+    },
+  },
+}
+`;
+
+exports[`relayNodeInterfacePlugin basic behavior should throw error for invalid type 1`] = `
+Object {
+  "data": Object {
+    "node": null,
+  },
+  "errors": Array [
+    [GraphQLError: Abstract type "Node" must resolve to an Object type at runtime for field "Query.node" with value { id: "abc", text: "comment-a" }, received "null". Either the "Node" type should provide a "resolveType" function or each possible type should provide an "isTypeOf" function.],
+  ],
+}
+`;
+
+exports[`relayNodeInterfacePlugin basic behavior should work correctly 1`] = `
+"type Query {
+  \\"\\"\\"Fetches an object given its global ID\\"\\"\\"
+  node(
+    \\"\\"\\"The global ID of an object\\"\\"\\"
+    id: ID!
+  ): Node
+
+  \\"\\"\\"Fetches objects given their global IDs\\"\\"\\"
+  nodes(
+    \\"\\"\\"The global IDs of objects\\"\\"\\"
+    ids: [ID!]!
+  ): [Node]!
+}"
+`;

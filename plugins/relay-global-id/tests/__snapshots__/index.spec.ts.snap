@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`relayGlobalIdPlugin basic behavior should resolve all fields correctly 1`] = `
+Object {
+  "data": Object {
+    "me": Object {
+      "id": "VXNlcjppZC12YWx1ZQ==",
+      "id2": "VXNlcjppZFR3by12YWx1ZQ==",
+      "id3": "VXNlcjppZFRocmVlLXZhbHVl",
+      "id4": "VXNlcjppZDQtdmFsdWU=",
+      "rawId": "id-value",
+      "rawId3": "idThree-value",
+      "rawIdFour": "id4-value",
+    },
+  },
+}
+`;
+
+exports[`relayGlobalIdPlugin basic behavior should work correctly 1`] = `
+"type User {
+  id: ID!
+  rawId: ID!
+  id2: ID!
+  id3: ID!
+  rawId3: ID!
+  id4: ID!
+  rawIdFour: ID!
+}"
+`;

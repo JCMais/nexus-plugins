@@ -1,0 +1,16 @@
+# coverage:
+#   status:
+#     project:
+#       target: 90%
+#       threshold: null
+#     projectA:
+#       flags: projectA
+#       target: 90%
+#     projectB:
+#       target: 50%
+#       flags: projectB
+flags:
+  sample:
+    paths:
+      - plugins/#-sample
+    carryforward: true
