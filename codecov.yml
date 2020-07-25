@@ -14,3 +14,19 @@ flags:
     paths:
       - plugins/#-sample
     carryforward: true
+  datetime:
+    paths:
+      - plugins/datetime
+    carryforward: true
+  fieldauthentication:
+    paths:
+      - plugins/field-authentication
+    carryforward: true
+  relayglobalid:
+    paths:
+      - plugins/relay-global-id
+    carryforward: true
+  relay-node-interface:
+    paths:
+      - plugins/relay-node-interface
+    carryforward: true

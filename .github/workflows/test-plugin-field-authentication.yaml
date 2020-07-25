@@ -1,0 +1,56 @@
+name: test-field-authentication
+
+env:
+  PROJECT_NAME: field-authentication
+
+# This workflow is triggered on pushes to the repository.
+on:
+  push:
+    paths:
+      - '.github/workflows/test-plugin-field-authentication.yaml'
+      - 'plugins/field-authentication/**'
+      - 'codecov.yml'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Output yarn cache dir
+        id: yarn-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Restore Yarn Cache
+        uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
+          key: v1-${{ runner.os }}-yarn-cache-${{ github.ref }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            v1-${{ runner.os }}-yarn-cache-${{ github.ref }}-
+            v1-${{ runner.os }}-yarn-cache-
+      - name: 'Yarn install'
+        run: yarn install
+      # We could have used lerna to run only on changed here...
+      - name: 'Run lint'
+        run: yarn workspace @jcm/nexus-plugin-${PROJECT_NAME} lint
+      - name: 'Run test'
+        run: yarn workspace @jcm/nexus-plugin-${PROJECT_NAME} test
+      - name: 'Run build:dist'
+        run: yarn workspace @jcm/nexus-plugin-${PROJECT_NAME} build:dist
+      - name: 'Echo project name without dashes'
+        run: echo ::set-output name=name::$(echo $PROJECT_NAME | sed "s/-//g")
+        id: project-name
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./plugins/${{ env.PROJECT_NAME }}/converage/**
+          flags: ${{ steps.project-name.outputs.name }}
+          name: ${{ env.PROJECT_NAME }}
+          fail_ci_if_error: false
