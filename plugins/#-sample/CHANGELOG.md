@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-sample@0.0.1...@jcm/nexus-plugin-sample@0.0.2) (2020-07-25)
+
+### Bug Fixes
+
+- add publishConfig to package.json ([8444527](https://github.com/JCMais/nexus-plugins/commit/8444527c32502e5b91369035cf68e8fa44366d6b))
+
 ## 0.0.1 (2020-07-25)
 
 ### Bug Fixes
