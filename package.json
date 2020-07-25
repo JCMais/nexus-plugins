@@ -8,7 +8,7 @@
     "build:dist": "lerna run --stream --sort build:dist",
     "clean:dist": "lerna run --stream --sort clean:dist",
     "format": "prettier --write \"**/*.ts\"  \"!**/dist/**\"  \"!**/dist-esm/**\"",
-    "lint": "eslint \"plugins/*/src/**/*.ts\" -f eslint-formatter-friendly",
+    "lint": "eslint \"plugins/**/*.ts\" -f eslint-formatter-friendly",
     "p": "lerna publish --conventional-commits",
     "prepare": "lerna run --stream --sort prepare",
     "test": "jest"

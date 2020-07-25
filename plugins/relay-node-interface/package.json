@@ -29,6 +29,7 @@
     "build:dist": "yarn -s clean:dist && tsc -p tsconfig.cjs.json --pretty && tsc -p tsconfig.esm.json --pretty",
     "clean:dist": "rimraf ./dist ./dist-esm",
     "install-peers": "install-self-peers -- --ignore-scripts",
+    "lint": "eslint \"{src,tests}/**/*.ts\" -f eslint-formatter-friendly",
     "prepare": "yarn install-peers",
     "prepublishOnly": "yarn build:dist",
     "test": "jest",
