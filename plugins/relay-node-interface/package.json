@@ -1,6 +1,6 @@
 {
   "name": "@jcm/nexus-plugin-relay-node-interface",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Creates the Relay Node interface and add node/nodes fields to the Query type",
   "keywords": [
     "nexus",
