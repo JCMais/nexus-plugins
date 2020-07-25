@@ -8,7 +8,7 @@ on:
   push:
     paths:
       - '.github/workflows/test-plugin-sample.yaml'
-      - 'plugins/sample/**'
+      - 'plugins/#-sample/**'
       - 'codecov.yml'
 
 jobs:
