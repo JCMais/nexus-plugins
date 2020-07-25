@@ -1,6 +1,7 @@
 {
   "name": "@jcm/nexus-plugin-sample",
   "version": "0.0.0",
+  "private": true,
   "description": "Sample package",
   "keywords": [],
   "homepage": "https://github.com/JCMais/nexus-plugins/blob/plugins/sample",
