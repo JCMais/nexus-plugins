@@ -48,5 +48,8 @@
   "engines": {
     "node": ">= 12"
   },
-  "gitHead": "19dd12aecd278a3ae91e2aecc9cc62352aacd45b"
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "0082bf6ac10a514558fe7985bcb905e117485b86"
 }
