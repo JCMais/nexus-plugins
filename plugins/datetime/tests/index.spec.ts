@@ -1,4 +1,4 @@
-import { execute, parse, printSchema, printType } from 'graphql'
+import { execute, parse, printSchema } from 'graphql'
 import { makeSchema, objectType } from '@nexus/schema'
 
 import { DateTimePluginConfig, dateTimePlugin } from '../src'
