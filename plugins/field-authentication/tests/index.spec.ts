@@ -46,6 +46,15 @@ const QueryAll = parse(
     me7 {
       ...userInfo
     }
+    me8 {
+      ...userInfo
+    }
+    me9 {
+      ...userInfo
+    }
+    me10 {
+      ...userInfo
+    }
   }`,
 )
 
@@ -114,6 +123,26 @@ const testSchema = (pluginConfig: FieldAuthenticationPluginConfig, outputs = fal
             authentication: [false, new Error('Invalid - Authenticated')],
             resolve: (o) => user,
           })
+          // authentication function
+          t.field('me8', {
+            type: User,
+            // @ts-expect-error
+            authentication: () => true,
+          })
+          // authentication function - thrown error
+          t.field('me9', {
+            type: User,
+            // @ts-expect-error
+            authentication: () => {
+              throw new Error('You shall not pass')
+            },
+          })
+          // invalid value
+          t.field('me10', {
+            type: User,
+            // @ts-expect-error
+            authentication: { something: true },
+          })
         },
       }),
     ],
@@ -167,6 +196,31 @@ describe('fieldAuthentication', () => {
       })
 
       expect(data).toMatchSnapshot()
+    })
+
+    it('format error returning non error value', async () => {
+      const schema = testSchema({
+        throwErrorOnFailedAuthenticationByDefault: true,
+        defaultErrorMessage: 'You need to be authenticated',
+        // @ts-expect-error
+        formatError: ({ error }) => "I'm not an error",
+      })
+      const errorLogger = jest.fn()
+      const data = await execute({
+        schema,
+        contextValue: {
+          state: {
+            user: 'something',
+          },
+          logger: {
+            error: errorLogger,
+          },
+        },
+        document: QueryAll,
+      })
+
+      expect(data).toMatchSnapshot()
+      expect(errorLogger).toHaveBeenCalled()
     })
   })
 })

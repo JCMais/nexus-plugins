@@ -112,12 +112,12 @@ export function fieldAuthenticationPlugin(pluginConfig: FieldAuthenticationPlugi
     if (finalErr instanceof Error) {
       throw finalErr
     }
-    ctx.error(
+    ;(ctx.logger || console).error(
       `Non-Error value ${JSON.stringify(
         finalErr,
       )} returned from custom formatError in field authentication plugin`,
     )
-    throw new Error('Not authenticated')
+    throw new Error(defaultErrorMessage)
   }
 
   return plugin({
