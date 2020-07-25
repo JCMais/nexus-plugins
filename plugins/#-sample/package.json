@@ -21,6 +21,7 @@
     "build:dist": "yarn -s clean:dist && tsc -p tsconfig.cjs.json --pretty && tsc -p tsconfig.esm.json --pretty",
     "clean:dist": "rimraf ./dist ./dist-esm",
     "prepare": "install-self-peers -- --ignore-scripts",
+    "prepublishOnly": "yarn build:dist",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:coverage:watch": "jest --coverage --watch",

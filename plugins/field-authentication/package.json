@@ -28,6 +28,7 @@
     "clean:dist": "rimraf ./dist ./dist-esm",
     "install-peers": "install-self-peers -- --ignore-scripts",
     "prepare": "yarn install-peers",
+    "prepublishOnly": "yarn build:dist",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:coverage:watch": "jest --coverage --watch",
