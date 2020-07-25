@@ -90,7 +90,7 @@ Object {
     "node": null,
   },
   "errors": Array [
-    [GraphQLError: Abstract type "Node" must resolve to an Object type at runtime for field "Query.node" with value { id: "abc", text: "comment-a" }, received "null". Either the "Node" type should provide a "resolveType" function or each possible type should provide an "isTypeOf" function.],
+    [GraphQLError: Abstract type Node must resolve to an Object type at runtime for field Query.node with value { id: "abc", text: "comment-a" }, received "null". Either the Node type should provide a "resolveType" function or each possible type should provide an "isTypeOf" function.],
   ],
 }
 `;
