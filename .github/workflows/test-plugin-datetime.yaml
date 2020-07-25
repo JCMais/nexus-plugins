@@ -7,9 +7,9 @@ env:
 on:
   push:
     paths:
-      - '.github/workflows/test-plugin-${PROJECT_NAME}.yaml'
+      - '.github/workflows/test-plugin-datetime.yaml'
+      - 'plugins/datetime/**'
       - 'codecov.yml'
-      - 'plugins/${PROJECT_NAME}/**'
 
 jobs:
   build-and-test:
