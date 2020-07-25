@@ -93,7 +93,7 @@ export interface FieldAuthenticationPluginConfig {
 // This is much more complex than it could be
 //  but it was done that way so that it handle all scenarios possible that we might ever encounter.
 
-export function fieldAuthenticationPlugin(pluginConfig: FieldAuthenticationPluginConfig) {
+export function fieldAuthenticationPlugin(pluginConfig: FieldAuthenticationPluginConfig = {}) {
   const {
     formatError = defaultFormatError,
     throwErrorOnFailedAuthenticationByDefault = false,

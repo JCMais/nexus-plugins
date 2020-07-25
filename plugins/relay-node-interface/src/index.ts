@@ -9,12 +9,16 @@ export type RelayNodeInterfacePluginConfig = {
     info: GraphQLResolveInfo,
   ) => core.ResultValue<any, any>
   resolveType: (object: core.ResultValue<any, any>) => core.AllOutputTypes
+  /**
+   * Used to parse the ID before calling idFetcher - By default this calls fromGlobalId from graphql-relay
+   */
+  idParser?: (id: string) => any
 }
 
 // Pretty much based on nodeDefinitions function from
 //  relay: https://github.com/graphql/graphql-relay-js/blob/8f4ed1ad35805ef233ad9fd1af33abb9c0cad35a/src/node/node.js
 export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginConfig) {
-  const { idFetcher, resolveType } = pluginConfig
+  const { idFetcher, resolveType, idParser = fromGlobalId } = pluginConfig
 
   if (!idFetcher) {
     throw new Error('idFetcher option is required for relayNodeInterfacePlugin')
@@ -95,7 +99,7 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
               resolve: (_obj, { ids }, context, info) =>
                 Promise.all(
                   // @ts-expect-error
-                  ids.map((id) => Promise.resolve(idFetcher(fromGlobalId(id), context, info))),
+                  ids.map((id) => Promise.resolve(idFetcher(idParser(id), context, info))),
                 ),
             })
           }),

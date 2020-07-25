@@ -1,13 +1,52 @@
 import { GraphQLResolveInfo } from 'graphql'
 import { plugin, dynamicOutputMethod, core } from '@nexus/schema'
-import { printedGenTypingImport } from '@nexus/schema/dist/utils'
 
 import { toGlobalId } from 'graphql-relay'
 
-export interface RelayGlobalIdPluginConfig {
+type RelayGlobalIdConfigResolveFunction<TypeName extends string, FieldName extends string> = (
+  root: core.RootValue<TypeName>,
+  args: core.ArgsValue<TypeName, FieldName>,
+  ctx: core.GetGen<'context'>,
+  info: GraphQLResolveInfo,
+) =>
+  | core.MaybePromise<core.ResultValue<TypeName, FieldName>>
+  | core.MaybePromiseDeep<core.ResultValue<TypeName, FieldName>>
+
+export type RelayGlobalIdPluginConfig<
+  TypeName extends string = any,
+  FieldName extends string = any
+> = {
   nexusFieldName?: string
   nexusSchemaImportId?: string
   relayGlobalIdPluginImportId?: string
+
+  /**
+   * Defaults to true - Adds a new ID! field called `raw${uppercase(fieldName)}`, where `fieldName` is `t.relayGlobalId(fieldName)`,
+   *  with the original value of the field.
+   *
+   * It's also possible to pass a string with a different name for the field
+   *
+   * You can also set this in a per field basis
+   */
+  shouldAddRawId?: boolean | string
+
+  /**
+   * If no resolve is supplied, the default value to be used as global ID will be root[field]
+   *
+   * This defaults to the fieldName used when calling relayGlobalId(fieldName)
+   *
+   * If a resolve is passed, this is ignored
+   *
+   * You can also set this in a per field basis
+   */
+  field?: string
+
+  /**
+   * You can use this to specificy your own resolve function for the ID
+   *
+   * You can also set this in a per field basis
+   */
+  resolve?: RelayGlobalIdConfigResolveFunction<TypeName, FieldName>
 }
 
 export type RelayGlobalIdNexusFieldConfig<
@@ -30,36 +69,37 @@ export type RelayGlobalIdNexusFieldConfig<
    * It's also possible to pass a string with a different name for the field
    */
   shouldAddRawId?: boolean | string
+
   /**
    * Defaults to the parent type of the current field.
    */
   typeName?: string
-  resolve?: (
-    root: core.RootValue<TypeName>,
-    args: core.ArgsValue<TypeName, FieldName>,
-    ctx: core.GetGen<'context'>,
-    info: GraphQLResolveInfo,
-  ) =>
-    | core.MaybePromise<core.ResultValue<TypeName, FieldName>>
-    | core.MaybePromiseDeep<core.ResultValue<TypeName, FieldName>>
+
+  /**
+   * You can use this to specificy your own resolve function for the ID
+   */
+  resolve?: RelayGlobalIdConfigResolveFunction<TypeName, FieldName>
 } & NexusGenPluginFieldConfig<TypeName, FieldName>
 
-export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig) {
+export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}) {
   const {
     nexusFieldName = 'relayGlobalId',
     nexusSchemaImportId = '@jcm/relay-global-id',
     relayGlobalIdPluginImportId = '@jcm/nexus-plugin-relay-global-id',
+    shouldAddRawId: shouldAddRawIdPluginConfig = true,
+    field: fieldPluginConfig,
+    resolve: resolvePluginConfig,
   } = pluginConfig
 
   return plugin({
     name: 'RelayGlobalId',
     description: 'add t.relayGlobalId(field) to the schema builder',
     fieldDefTypes: [
-      printedGenTypingImport({
+      core.printedGenTypingImport({
         module: nexusSchemaImportId,
         bindings: ['core'],
       }),
-      printedGenTypingImport({
+      core.printedGenTypingImport({
         module: relayGlobalIdPluginImportId,
         bindings: ['RelayGlobalIdNexusFieldConfig'],
       }),
@@ -80,10 +120,10 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig) {
             ]
 
             const {
-              field = fieldName,
-              shouldAddRawId = true,
+              field = fieldPluginConfig || fieldName,
+              shouldAddRawId = shouldAddRawIdPluginConfig,
               typeName = parentTypeName,
-              resolve: resolveFn,
+              resolve: resolveFn = resolvePluginConfig,
             } = fieldConfig
 
             t.id(fieldName, {

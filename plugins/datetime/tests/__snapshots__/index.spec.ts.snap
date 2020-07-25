@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dateTimePlugin basic behavior should resolve all fields correctly 1`] = `
+Object {
+  "data": Object {
+    "users": Array [
+      Object {
+        "default_future": Object {
+          "formatted": "2120-07-02",
+          "isAfter": true,
+          "isBefore": false,
+          "isBetween": false,
+          "isSame": false,
+          "isSameOrAfter": true,
+          "isSameOrBefore": false,
+          "iso": "2120-07-02T01:28:59.391Z",
+        },
+        "default_past": Object {
+          "formatted": "2020-07-02",
+          "isAfter": false,
+          "isBefore": true,
+          "isBetween": false,
+          "isSame": false,
+          "isSameOrAfter": false,
+          "isSameOrBefore": true,
+          "iso": "2020-07-02T01:28:59.391Z",
+        },
+        "nullable": null,
+        "param": Object {
+          "formatted": "2020-07-02",
+          "isAfter": false,
+          "isBefore": true,
+          "isBetween": false,
+          "isSame": false,
+          "isSameOrAfter": false,
+          "isSameOrBefore": true,
+          "iso": "2020-07-02T01:28:59.391Z",
+        },
+      },
+      Object {
+        "default_future": Object {
+          "formatted": "2120-07-02",
+          "isAfter": true,
+          "isBefore": false,
+          "isBetween": false,
+          "isSame": false,
+          "isSameOrAfter": true,
+          "isSameOrBefore": false,
+          "iso": "2120-07-02T01:28:59.391Z",
+        },
+        "default_past": Object {
+          "formatted": "2020-07-12",
+          "isAfter": false,
+          "isBefore": true,
+          "isBetween": false,
+          "isSame": false,
+          "isSameOrAfter": false,
+          "isSameOrBefore": true,
+          "iso": "2020-07-12T01:28:59.391Z",
+        },
+        "nullable": null,
+        "param": Object {
+          "formatted": "2020-07-12",
+          "isAfter": false,
+          "isBefore": false,
+          "isBetween": true,
+          "isSame": true,
+          "isSameOrAfter": true,
+          "isSameOrBefore": true,
+          "iso": "2020-07-12T01:28:59.391Z",
+        },
+      },
+      Object {
+        "default_future": Object {
+          "formatted": "2120-07-02",
+          "isAfter": true,
+          "isBefore": false,
+          "isBetween": false,
+          "isSame": false,
+          "isSameOrAfter": true,
+          "isSameOrBefore": false,
+          "iso": "2120-07-02T01:28:59.391Z",
+        },
+        "default_past": Object {
+          "formatted": "2020-07-22",
+          "isAfter": false,
+          "isBefore": true,
+          "isBetween": false,
+          "isSame": false,
+          "isSameOrAfter": false,
+          "isSameOrBefore": true,
+          "iso": "2020-07-22T01:28:59.391Z",
+        },
+        "nullable": null,
+        "param": Object {
+          "formatted": "2020-07-22",
+          "isAfter": true,
+          "isBefore": false,
+          "isBetween": false,
+          "isSame": false,
+          "isSameOrAfter": true,
+          "isSameOrBefore": false,
+          "iso": "2020-07-22T01:28:59.391Z",
+        },
+      },
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Argument "format" of required type "String!" was not provided.],
+    [GraphQLError: Argument "format" of required type "String!" was not provided.],
+    [GraphQLError: Argument "format" of required type "String!" was not provided.],
+  ],
+}
+`;
+
+exports[`dateTimePlugin basic behavior should work correctly 1`] = `
+"\\"\\"\\"Represents an ISO datetime that can be formatted in other formats\\"\\"\\"
+type DateTimeField implements DateTimeFieldInterface {
+  iso: String!
+  formatted(
+    format: String!
+
+    \\"\\"\\"Timezone to format the ISO date, defaults to UTC\\"\\"\\"
+    timezone: String
+  ): String!
+  isAfter(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isBefore(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSameOrAfter(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSameOrBefore(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSame(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isBetween(
+    \\"\\"\\"Defaults to the start of the current day if not provided\\"\\"\\"
+    isoStart: String
+
+    \\"\\"\\"Defaults to the end of the current day if not provided\\"\\"\\"
+    isoEnd: String
+  ): Boolean!
+}
+
+\\"\\"\\"A object that represents an ISO datetime\\"\\"\\"
+interface DateTimeFieldInterface {
+  iso: String!
+  formatted(
+    format: String!
+
+    \\"\\"\\"Timezone to format the ISO date, defaults to UTC\\"\\"\\"
+    timezone: String
+  ): String!
+  isAfter(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isBefore(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSameOrAfter(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSameOrBefore(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSame(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isBetween(
+    \\"\\"\\"Defaults to the start of the current day if not provided\\"\\"\\"
+    isoStart: String
+
+    \\"\\"\\"Defaults to the end of the current day if not provided\\"\\"\\"
+    isoEnd: String
+  ): Boolean!
+}
+
+type Query {
+  users: [User]!
+}
+
+type User {
+  id: ID!
+  createdAt: DateTimeField!
+  createdAt2: DateTimeField!
+  createdAt3: DateTimeField
+}
+"
+`;

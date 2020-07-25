@@ -1,15 +1,14 @@
 {
-  "name": "@jcm/nexus-plugin-relay-node-interface",
+  "name": "@jcm/nexus-plugin-datetime",
   "version": "0.0.1",
-  "description": "Creates the Relay Node interface and add node/nodes fields to the Query type",
+  "description": "Creates t.dateTime field",
   "keywords": [
     "nexus",
     "plugin",
     "nexus-plugin",
     "graphql",
-    "relay",
-    "graphql-relay",
-    "node-interface"
+    "moment",
+    "datetime"
   ],
   "homepage": "https://github.com/JCMais/nexus-plugins/blob/plugins/relay-node-interface",
   "license": "MIT",
@@ -36,13 +35,12 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@team-griffin/install-self-peers": "1.1.1",
-    "@types/graphql-relay": "0.4.5"
+    "@team-griffin/install-self-peers": "1.1.1"
   },
   "peerDependencies": {
     "@nexus/schema": "^0.14.0",
     "graphql": "^14.5.8",
-    "graphql-relay": "^0.6.0"
+    "moment-timezone": "^0.5.31"
   },
   "engines": {
     "node": ">= 12"
