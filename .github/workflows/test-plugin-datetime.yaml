@@ -48,7 +48,6 @@ jobs:
         id: project-name
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
-        if: ${{ secrets.CODECOV_TOKEN != '' }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./plugins/${{ env.PROJECT_NAME }}/converage/**
