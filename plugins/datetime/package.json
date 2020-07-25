@@ -1,6 +1,6 @@
 {
   "name": "@jcm/nexus-plugin-datetime",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Creates t.dateTime field",
   "keywords": [
     "nexus",
