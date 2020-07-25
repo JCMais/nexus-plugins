@@ -40,7 +40,7 @@ jobs:
       - name: 'Run lint'
         run: yarn workspace @jcm/nexus-plugin-${PROJECT_NAME} lint
       - name: 'Run test'
-        run: yarn workspace @jcm/nexus-plugin-${PROJECT_NAME} test
+        run: yarn workspace @jcm/nexus-plugin-${PROJECT_NAME} test:coverage
       - name: 'Run build:dist'
         run: yarn workspace @jcm/nexus-plugin-${PROJECT_NAME} build:dist
       - name: 'Echo project name without dashes'
