@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.6](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-datetime@0.0.5...@jcm/nexus-plugin-datetime@0.0.6) (2020-07-31)
+
+### Bug Fixes
+
+- datetime plugin not checking if passed dateTimeISOField is null or not ([5f7f11c](https://github.com/JCMais/nexus-plugins/commit/5f7f11cf0183190a730def78bc493e3497ca6f97))
+
 ## [0.0.5](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-datetime@0.0.4...@jcm/nexus-plugin-datetime@0.0.5) (2020-07-31)
 
 ### Bug Fixes
