@@ -164,9 +164,10 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
             t.field(fieldName, {
               ...remainingFieldConfig,
               type: 'DateTimeField',
-              resolve: (root) => ({
-                iso: moment(root[dateTimeISOField]).toISOString(),
-              }),
+              resolve: (root) =>
+                root[dateTimeISOField] && {
+                  iso: moment(root[dateTimeISOField]).toISOString(),
+                },
             })
           },
         }),
