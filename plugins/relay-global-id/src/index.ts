@@ -84,7 +84,7 @@ export type RelayGlobalIdNexusFieldConfig<
 export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}) {
   const {
     nexusFieldName = 'relayGlobalId',
-    nexusSchemaImportId = '@jcm/relay-global-id',
+    nexusSchemaImportId = '@nexus/schema',
     relayGlobalIdPluginImportId = '@jcm/nexus-plugin-relay-global-id',
     shouldAddRawId: shouldAddRawIdPluginConfig = true,
     field: fieldPluginConfig,
@@ -124,14 +124,14 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
               shouldAddRawId = shouldAddRawIdPluginConfig,
               typeName = parentTypeName,
               resolve: resolveFn = resolvePluginConfig,
+              ...remainingFieldConfig
             } = fieldConfig
 
             t.id(fieldName, {
+              ...remainingFieldConfig,
               async resolve(root, args, ctx, info) {
-                return toGlobalId(
-                  typeName,
-                  resolveFn ? await resolveFn(root, args, ctx, info) : root[field],
-                )
+                const resolved = resolveFn ? await resolveFn(root, args, ctx, info) : root[field]
+                return resolved && toGlobalId(typeName, resolved)
               },
             })
 

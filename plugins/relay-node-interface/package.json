@@ -30,7 +30,7 @@
     "clean:dist": "rimraf ./dist ./dist-esm",
     "install-peers": "install-self-peers -- --ignore-scripts",
     "lint": "eslint \"{src,tests}/**/*.ts\" -f eslint-formatter-friendly",
-    "prepare": "yarn install-peers",
+    "prepare": "echo \"do nothing\"",
     "prepublishOnly": "yarn build:dist",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -38,12 +38,12 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@team-griffin/install-self-peers": "1.1.1",
-    "@types/graphql-relay": "0.4.5"
+    "@types/graphql-relay": "^0.4.5",
+    "graphql-relay": "^0.6.0"
   },
   "peerDependencies": {
     "@nexus/schema": "^0.14.0",
-    "graphql": "^14.5.8",
+    "graphql": "^14.5.8 || ^15",
     "graphql-relay": "^0.6.0"
   },
   "engines": {

@@ -54,6 +54,10 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
       builder.addType(
         dynamicOutputMethod({
           name: dateTimeFieldName,
+          typeDefinition: `<FieldName extends string>(
+            fieldName: FieldName, 
+            config: DateTimePluginFieldConfig<TypeName, FieldName>
+          ): void`,
           factory({ typeName: _parentTypeName, typeDef: t, args: factoryArgs }) {
             const [fieldName, fieldConfig = {}] = factoryArgs
             const { dateTimeISOField = fieldName, ...remainingFieldConfig } = fieldConfig

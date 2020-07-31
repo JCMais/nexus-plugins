@@ -1425,15 +1425,6 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@team-griffin/install-self-peers@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/@team-griffin/install-self-peers/-/install-self-peers-1.1.1.tgz#de0fd354be3f44dfd84dd79bc011d8a3af38e354"
-  integrity sha1-3g/TVL4/RN/YTdebwBHYo68441Q=
-  dependencies:
-    cross-spawn "^5.1.0"
-    minimist "^1.2.0"
-    ramda "^0.23.0"
-
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.9"
   resolved "https://registry.npmjs.org/@types/babel__core/-/babel__core-7.1.9.tgz#77e59d438522a6fb898fa43dc3455c6e72f3963d"
@@ -1502,19 +1493,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/graphql-relay@0.4.5":
-  version "0.4.5"
-  resolved "https://registry.npmjs.org/@types/graphql-relay/-/graphql-relay-0.4.5.tgz#371aa8bd754fde6f85e4c0b1dc7f16740e27c521"
-  integrity sha512-HhqS6kzgLCK9OCJzynauCw5vCqyBwUq/ZrtXyUc9m0Lq3IVcA5b5JCV7NwaWPzJP4Q1TDDsQ6eLIqJp+SM6DZQ==
+"@types/graphql-relay@^0.4.5":
+  version "0.4.11"
+  resolved "https://registry.npmjs.org/@types/graphql-relay/-/graphql-relay-0.4.11.tgz#ad14834a5da61e8f70072dc639320937e44d548f"
+  integrity sha512-b/dEvz8KBsUrxRbY4kBCVbef6Fm+UhWB4G8L8SYFJEd5V/hszSPnoY+k5Pf3j6As7bXHhBlbmLyJj0aJzCKE/Q==
   dependencies:
-    "@types/graphql" "*"
-
-"@types/graphql@*":
-  version "14.5.0"
-  resolved "https://registry.npmjs.org/@types/graphql/-/graphql-14.5.0.tgz#a545fb3bc8013a3547cf2f07f5e13a33642b75d6"
-  integrity sha512-MOkzsEp1Jk5bXuAsHsUi6BVv0zCO+7/2PTiZMXWDSsMXvNU6w/PLMQT2vHn8hy2i0JqojPz1Sz6rsFjHtsU0lA==
-  dependencies:
-    graphql "*"
+    graphql "^14.5.3"
 
 "@types/http-cache-semantics@*":
   version "4.0.0"
@@ -2771,15 +2755,6 @@ cosmiconfig@^6.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.7.2"
-
-cross-spawn@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
-  integrity sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=
-  dependencies:
-    lru-cache "^4.0.1"
-    shebang-command "^1.2.0"
-    which "^1.2.9"
 
 cross-spawn@^6.0.0:
   version "6.0.5"
@@ -4059,12 +4034,7 @@ graphql-relay@^0.6.0:
   dependencies:
     prettier "^1.16.0"
 
-graphql@*:
-  version "15.3.0"
-  resolved "https://registry.npmjs.org/graphql/-/graphql-15.3.0.tgz#3ad2b0caab0d110e3be4a5a9b2aa281e362b5278"
-  integrity sha512-GTCJtzJmkFLWRfFJuoo9RWWa/FfamUHgiFosxi/X1Ani4AVWbeyBenZTNX6dM+7WSbbFfTo/25eh0LLkwHMw2w==
-
-graphql@^14.5.8:
+graphql@^14.5.3, graphql@^14.5.8:
   version "14.7.0"
   resolved "https://registry.npmjs.org/graphql/-/graphql-14.7.0.tgz#7fa79a80a69be4a31c27dda824dc04dac2035a72"
   integrity sha512-l0xWZpoPKpppFzMfvVyFmp9vLN7w/ZZJPefUicMCepfJeQ8sMcztloGYY9DfjVPo6tIUDzU5Hw3MUbIjj9AVVA==
@@ -5712,14 +5682,6 @@ lowercase-keys@^2.0.0:
   resolved "https://registry.npmjs.org/lowercase-keys/-/lowercase-keys-2.0.0.tgz#2603e78b7b4b0006cbca2fbcc8a3202558ac9479"
   integrity sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==
 
-lru-cache@^4.0.1:
-  version "4.1.5"
-  resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-4.1.5.tgz#8bbe50ea85bed59bc9e33dcab8235ee9bcf443cd"
-  integrity sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==
-  dependencies:
-    pseudomap "^1.0.2"
-    yallist "^2.1.2"
-
 lru-cache@^5.1.1:
   version "5.1.1"
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-5.1.1.tgz#1da27e6710271947695daf6848e847f01d84b920"
@@ -7043,11 +7005,6 @@ protoduck@^5.0.1:
   dependencies:
     genfun "^5.0.0"
 
-pseudomap@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
-  integrity sha1-8FKijacOYYkX7wqKw0wa5aaChrM=
-
 psl@^1.1.28:
   version "1.8.0"
   resolved "https://registry.npmjs.org/psl/-/psl-1.8.0.tgz#9326f8bcfb013adcc005fdff056acce020e51c24"
@@ -7109,11 +7066,6 @@ quick-lru@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/quick-lru/-/quick-lru-4.0.1.tgz#5b8878f113a58217848c6482026c73e1ba57727f"
   integrity sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==
-
-ramda@^0.23.0:
-  version "0.23.0"
-  resolved "https://registry.npmjs.org/ramda/-/ramda-0.23.0.tgz#ccd13fff73497a93974e3e86327bfd87bd6e8e2b"
-  integrity sha1-zNE//3NJepOXTj6GMnv9h71ujis=
 
 rc@^1.2.8:
   version "1.2.8"
@@ -8901,11 +8853,6 @@ y18n@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/y18n/-/y18n-4.0.0.tgz#95ef94f85ecc81d007c264e190a120f0a3c8566b"
   integrity sha512-r9S/ZyXu/Xu9q1tYlpsLIsa3EeLXXk0VwlxqTcFRfg9EhMW+17kbt9G0NrgCmhGb5vT2hyhJZLfDGx+7+5Uj/w==
-
-yallist@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npmjs.org/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
-  integrity sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=
 
 yallist@^3.0.0, yallist@^3.0.2, yallist@^3.0.3:
   version "3.1.1"
