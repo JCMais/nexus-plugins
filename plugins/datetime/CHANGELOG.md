@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.8](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-datetime@0.0.7...@jcm/nexus-plugin-datetime@0.0.8) (2020-08-05)
+
+### Bug Fixes
+
+- **datetime:** nexusSchemaImportId was wrong ([7b747a8](https://github.com/JCMais/nexus-plugins/commit/7b747a8d2d800e2505e039e96eb5fc66e29fca10))
+
 ## [0.0.7](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-datetime@0.0.6...@jcm/nexus-plugin-datetime@0.0.7) (2020-08-05)
 
 **Note:** Version bump only for package @jcm/nexus-plugin-datetime
