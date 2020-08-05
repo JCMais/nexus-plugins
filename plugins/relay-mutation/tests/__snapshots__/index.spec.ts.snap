@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`relayMutationPlugin basic behavior should resolve all fields correctly 1`] = `
+Object {
+  "data": Object {
+    "add": Object {
+      "result": 3,
+    },
+  },
+}
+`;
+
+exports[`relayMutationPlugin basic behavior should work correctly 1`] = `
+"input addInput {
+  number1: Int!
+  number2: Int!
+  clientMutationId: String
+}
+
+type addPayload {
+  result: Int!
+  clientMutationId: String
+}
+
+type Mutation {
+  add(input: addInput!): addPayload!
+}
+
+type Query {
+  ok: Boolean!
+}
+"
+`;
+
+exports[`relayMutationPlugin error handling should throw error caught on async mutateAndGetPayload call 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: That happened],
+  ],
+}
+`;
+
+exports[`relayMutationPlugin error handling should throw error caught on sync mutateAndGetPayload call 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: That happened],
+  ],
+}
+`;

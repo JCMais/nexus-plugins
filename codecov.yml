@@ -26,7 +26,11 @@ flags:
     paths:
       - plugins/relay-global-id
     carryforward: true
-  relay-node-interface:
+  relaymutation:
+    paths:
+      - plugins/relay-mutation
+    carryforward: true
+  relaynodeinterface:
     paths:
       - plugins/relay-node-interface
     carryforward: true
