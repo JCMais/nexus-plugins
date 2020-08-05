@@ -1,6 +1,6 @@
 {
   "name": "@jcm/nexus-plugin-relay-global-id",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Adds t.relayGlobalId to the schema builder",
   "keywords": [
     "nexus",
