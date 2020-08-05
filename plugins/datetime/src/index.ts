@@ -32,7 +32,7 @@ export type DateTimePluginFieldConfig<
 export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
   const {
     dateTimeFieldName = 'dateTime',
-    nexusSchemaImportId = '@jcm/relay-global-id',
+    nexusSchemaImportId = '@nexus/schema',
     dateTimePluginImportId = '@jcm/nexus-plugin-relay-global-id',
   } = pluginConfig
 
