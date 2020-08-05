@@ -33,7 +33,7 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
   const {
     dateTimeFieldName = 'dateTime',
     nexusSchemaImportId = '@nexus/schema',
-    dateTimePluginImportId = '@jcm/nexus-plugin-relay-global-id',
+    dateTimePluginImportId = '@jcm/nexus-plugin-datetime',
   } = pluginConfig
 
   return plugin({
