@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.9](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-datetime@0.0.8...@jcm/nexus-plugin-datetime@0.0.9) (2020-08-05)
+
+### Bug Fixes
+
+- **datetime:** wrong default value for dateTimePluginImportId ([943a629](https://github.com/JCMais/nexus-plugins/commit/943a629881e4fb8998a87f418e6c9b3fb6fe2ae3))
+
 ## [0.0.8](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-datetime@0.0.7...@jcm/nexus-plugin-datetime@0.0.8) (2020-08-05)
 
 ### Bug Fixes
