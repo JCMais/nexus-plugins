@@ -105,11 +105,6 @@ Object {
       },
     ],
   },
-  "errors": Array [
-    [GraphQLError: Argument "format" of required type "String!" was not provided.],
-    [GraphQLError: Argument "format" of required type "String!" was not provided.],
-    [GraphQLError: Argument "format" of required type "String!" was not provided.],
-  ],
 }
 `;
 
