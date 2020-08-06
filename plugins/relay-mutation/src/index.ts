@@ -3,7 +3,7 @@ import { GraphQLResolveInfo } from 'graphql'
 
 type MutateAndGetPayloadFunction<TypeName extends string, FieldName extends string> = (
   root: core.RootValue<TypeName>,
-  input: core.ArgsValue<TypeName, FieldName>['Mutation'][FieldName]['input'],
+  input: core.ArgsValue<TypeName, FieldName>['input'],
   ctx: core.GetGen<'context'>,
   info: GraphQLResolveInfo,
 ) =>
