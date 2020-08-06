@@ -1,6 +1,5 @@
 import { plugin, core } from '@nexus/schema'
 import { GraphQLResolveInfo } from 'graphql'
-import { MaybePromise } from '@nexus/schema/dist/core'
 
 // Most of this code is inspired on the authorize plugin from @nexus/schema
 
@@ -60,7 +59,7 @@ export type FieldAuthenticationPluginConfigIsLogged<
   args: core.ArgsValue<TypeName, FieldName>,
   context: core.GetGen<'context'>,
   info: GraphQLResolveInfo,
-) => boolean | MaybePromise<boolean>
+) => boolean | core.MaybePromise<boolean>
 
 export interface FieldAuthenticationPluginConfig {
   /**

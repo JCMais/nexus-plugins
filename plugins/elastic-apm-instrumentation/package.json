@@ -1,0 +1,53 @@
+{
+  "name": "@jcm/nexus-plugin-elastic-apm-instrumentation",
+  "version": "0.0.0",
+  "description": "Captures transactions spans for each field using an Elastic APM Agent",
+  "keywords": [
+    "nexus",
+    "plugin",
+    "nexus-plugin",
+    "graphql",
+    "instrumentation",
+    "apm",
+    "elastic"
+  ],
+  "homepage": "https://github.com/JCMais/nexus-plugins/blob/plugins/elastic-apm-instrumentation",
+  "license": "MIT",
+  "author": "Jonathan Cardoso <me@jonathancardoso.com>",
+  "main": "dist",
+  "module": "dist-esm",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "dist-esm",
+    "src",
+    "LICENSE.md",
+    "README.md",
+    "yarn.lock"
+  ],
+  "scripts": {
+    "build:dist": "yarn -s clean:dist && tsc -p tsconfig.cjs.json --pretty && tsc -p tsconfig.esm.json --pretty",
+    "clean:dist": "rimraf ./dist ./dist-esm",
+    "lint": "eslint \"{src,tests}/**/*.ts\" -f eslint-formatter-friendly",
+    "prepare": "echo \"do nothing\"",
+    "prepublishOnly": "yarn build:dist",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:coverage:watch": "jest --coverage --watch",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "elastic-apm-node": "^3.6.1"
+  },
+  "peerDependencies": {
+    "@nexus/schema": "^0.14.0",
+    "elastic-apm-node": "^3.6.1",
+    "graphql": "^14.5.8 || ^15"
+  },
+  "engines": {
+    "node": ">= 12"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
