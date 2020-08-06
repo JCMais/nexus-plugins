@@ -1,6 +1,12 @@
 import { plugin, core } from '@nexus/schema'
-import { isLeafType, isAbstractType, isWrappingType } from 'graphql'
-import { Agent } from 'elastic-apm-node'
+import {
+  isLeafType,
+  isWrappingType,
+  ResponsePath,
+  GraphQLOutputType,
+  GraphQLWrappingType,
+} from 'graphql'
+import type * as Agent from 'elastic-apm-node'
 
 // Most of this code is inspired on the authorize plugin from @nexus/schema
 
@@ -15,16 +21,37 @@ const fieldDefTypes = core.printedGenTyping({
 })
 
 export interface ElasticApmInstrumentationPluginConfig {
-  apmAgent
-  shouldCreateApmSpanByDefault
-  shouldIgnoreLeafFieldsByDefault
-  ignoredFields
-  ignoredTypes
+  apmAgent: typeof Agent
+
+  /**
+   * Should create spans by default for all fields that pass the ignore checks?
+   *
+   * Defaults to true
+   */
+  shouldCreateApmSpanByDefault?: boolean
+
+  /**
+   * Should leaf fields be ignored?
+   *
+   * Defaults to true
+   */
+  shouldIgnoreLeafFieldsByDefault?: boolean
+
+  /**
+   * Pass an array of fields to be ignored from span creation, each item can be a string or a RegExp
+   * If a string, it's also possible to use wildcards, like: `PageInfo.*`
+   */
+  ignoredFields?: Array<string | RegExp>
+
+  /**
+   * Pass an array of types to be ignored from span creation, each item can be a string or a RegExp
+   */
+  ignoredTypes?: Array<string | RegExp>
 }
 
-const isValidMatch = (strA, strB) => strA === strB || strA === '*'
+const isValidMatch = (strA: string, strB: string) => strA === strB || strA === '*'
 
-const isPatternMatchingField = (pattern, field) => {
+const isPatternMatchingField = (pattern: string, field: string) => {
   if (pattern === '*') return true
 
   const piecesPatternPieces = pattern.split('.')
@@ -40,22 +67,27 @@ const isPatternMatchingField = (pattern, field) => {
   )
 }
 
-const getFirstNonWrappingType = (parent) => {
+const getFirstNonWrappingType = (
+  parent: GraphQLOutputType,
+): Exclude<GraphQLOutputType, GraphQLWrappingType> => {
   if (isWrappingType(parent)) return getFirstNonWrappingType(parent.ofType)
 
   return parent
 }
 
-export const getGraphQLFieldPath = (path: string) =>
+const getGraphQLFieldPath = (path?: ResponsePath): string =>
   (path
     ? [
         getGraphQLFieldPath(path.prev),
+        // @ts-expect-error
         path.prev ? path.key : `${path.typename}.${path.key}`,
       ].filter((v) => !!v)
     : []
   ).join('.')
 
-export const elasticApmInstrumentationPlugin = (pluginConfig = {}) => {
+export const elasticApmInstrumentationPlugin = (
+  pluginConfig: ElasticApmInstrumentationPluginConfig,
+) => {
   const {
     apmAgent,
     shouldCreateApmSpanByDefault = true,
@@ -134,12 +166,11 @@ export const elasticApmInstrumentationPlugin = (pluginConfig = {}) => {
         return plugin.completeValue(
           toComplete,
           (val) => {
-            console.log(val)
-            span.end()
+            span?.end()
             return val
           },
           (error) => {
-            span.end()
+            span?.end()
             throw error
           },
         )
