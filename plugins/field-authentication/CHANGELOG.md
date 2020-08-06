@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-field-authentication@0.0.6...@jcm/nexus-plugin-field-authentication@0.0.7) (2020-08-06)
+
+### Features
+
+- add initial code for elastic-apm-instrumentation plugin ([9dc4323](https://github.com/JCMais/nexus-plugins/commit/9dc4323fcf509bcfe5003131747558f3f26cb5d1))
+
 ## [0.0.6](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-field-authentication@0.0.5...@jcm/nexus-plugin-field-authentication@0.0.6) (2020-08-05)
 
 **Note:** Version bump only for package @jcm/nexus-plugin-field-authentication

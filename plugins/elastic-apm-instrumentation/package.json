@@ -1,6 +1,6 @@
 {
   "name": "@jcm/nexus-plugin-elastic-apm-instrumentation",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Captures transactions spans for each field using an Elastic APM Agent",
   "keywords": [
     "nexus",
