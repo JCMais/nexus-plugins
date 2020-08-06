@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-datetime@0.0.9...@jcm/nexus-plugin-datetime@0.0.10) (2020-08-06)
+
+**Note:** Version bump only for package @jcm/nexus-plugin-datetime
+
 ## [0.0.9](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-datetime@0.0.8...@jcm/nexus-plugin-datetime@0.0.9) (2020-08-05)
 
 ### Bug Fixes
