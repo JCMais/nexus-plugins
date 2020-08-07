@@ -14,6 +14,16 @@ export type RelayMutationPluginConfig = {
   nexusFieldName?: string
   nexusSchemaImportId?: string
   relayMutationPluginImportId?: string
+  /**
+   * Default function used to generate the mutation input type name
+   * defaults to a function that for a mutation named addUser, generates AddUserInput
+   */
+  defaultMutationInputTypeNameCreator?: (mutationFieldName: string) => string
+  /**
+   * Default function used to generate the mutation payload type name
+   * defaults to a function that for a mutation named addUser, generates AddUserPayload
+   */
+  defaultMutationPayloadTypeNameCreator?: (mutationFieldName: string) => string
 }
 
 export type RelayMutationNexusFieldConfig<
@@ -25,11 +35,16 @@ export type RelayMutationNexusFieldConfig<
   mutateAndGetPayload: MutateAndGetPayloadFunction<TypeName, FieldName>
 } & Omit<NexusGenPluginFieldConfig<TypeName, FieldName>, 'resolve' | 'type' | 'args'>
 
+const ucfirst = (text: string) =>
+  text.length === 1 ? text.toUpperCase() : `${text.charAt(0).toUpperCase()}${text.slice(1)}`
+
 export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}) => {
   const {
     nexusFieldName = 'relayMutation',
     nexusSchemaImportId = '@nexus/schema',
     relayMutationPluginImportId = '@jcm/nexus-plugin-relay-mutation',
+    defaultMutationInputTypeNameCreator = (text) => ucfirst(`${text}Input`),
+    defaultMutationPayloadTypeNameCreator = (text) => ucfirst(`${text}Payload`),
   } = pluginConfig
 
   return plugin({
@@ -68,8 +83,8 @@ export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}
               ...remainingFieldConfig
             } = fieldConfig
 
-            const inputTypeName = `${fieldName}Input`
-            const payloadTypeName = `${fieldName}Payload`
+            const inputTypeName = defaultMutationInputTypeNameCreator(fieldName)
+            const payloadTypeName = defaultMutationPayloadTypeNameCreator(fieldName)
 
             if (inputFields && typeof inputFields !== 'function') {
               throw new Error(

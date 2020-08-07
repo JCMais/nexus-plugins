@@ -22,7 +22,7 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  addInput: { // input type
+  AddInput: { // input type
     clientMutationId?: string | null; // String
     number1: number; // Int!
     number2: number; // Int!
@@ -33,12 +33,12 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
-  Mutation: {};
-  Query: {};
-  addPayload: { // root type
+  AddPayload: { // root type
     clientMutationId?: string | null; // String
     result: number; // Int!
   }
+  Mutation: {};
+  Query: {};
   String: string;
   Int: number;
   Float: number;
@@ -47,26 +47,26 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  addInput: NexusGenInputs['addInput'];
+  AddInput: NexusGenInputs['AddInput'];
 }
 
 export interface NexusGenFieldTypes {
+  AddPayload: { // field return type
+    clientMutationId: string | null; // String
+    result: number; // Int!
+  }
   Mutation: { // field return type
-    add: NexusGenRootTypes['addPayload']; // addPayload!
+    add: NexusGenRootTypes['AddPayload']; // AddPayload!
   }
   Query: { // field return type
     ok: boolean; // Boolean!
-  }
-  addPayload: { // field return type
-    clientMutationId: string | null; // String
-    result: number; // Int!
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
     add: { // args
-      input: NexusGenInputs['addInput']; // addInput!
+      input: NexusGenInputs['AddInput']; // AddInput!
     }
   }
 }
@@ -76,9 +76,9 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Mutation" | "Query" | "addPayload";
+export type NexusGenObjectNames = "AddPayload" | "Mutation" | "Query";
 
-export type NexusGenInputNames = "addInput";
+export type NexusGenInputNames = "AddInput";
 
 export type NexusGenEnumNames = never;
 

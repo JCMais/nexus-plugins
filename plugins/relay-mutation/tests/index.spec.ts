@@ -89,7 +89,7 @@ const mutationWithAsyncMutateAndGetError = mutationField((t) => {
 })
 
 const AddNumbers = parse(
-  `mutation AddNumbers($input: addInput) {
+  `mutation AddNumbers($input: AddInput) {
     add(input: $input) {
       result
     }

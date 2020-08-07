@@ -11,19 +11,19 @@ Object {
 `;
 
 exports[`relayMutationPlugin basic behavior should work correctly 1`] = `
-"input addInput {
+"input AddInput {
   number1: Int!
   number2: Int!
   clientMutationId: String
 }
 
-type addPayload {
+type AddPayload {
   result: Int!
   clientMutationId: String
 }
 
 type Mutation {
-  add(input: addInput!): addPayload!
+  add(input: AddInput!): AddPayload!
 }
 
 type Query {
