@@ -5,7 +5,7 @@ import { GraphQLResolveInfo } from 'graphql'
 
 const fieldAuthenticationPluginResolverImport = core.printedGenTypingImport({
   module: '@jcm/nexus-plugin-field-authentication',
-  bindings: ['FieldAuthenticationResolver'],
+  bindings: ['FieldAuthenticationResolver', 'FieldAuthenticationResolverReturnValue'],
 })
 
 const fieldDefTypes = core.printedGenTyping({
@@ -24,7 +24,7 @@ const fieldDefTypes = core.printedGenTyping({
     If the second element is anything else, this value will be resolved if the request
      fails the authentication check.
   `,
-  type: 'FieldAuthenticationResolver<TypeName, FieldName>',
+  type: 'FieldAuthenticationResolver<TypeName, FieldName> | FieldAuthenticationResolverReturnValue',
   imports: [fieldAuthenticationPluginResolverImport],
 })
 
@@ -37,7 +37,7 @@ export type FieldAuthenticationResolverReturnValue =
 export type FieldAuthenticationResolver<TypeName extends string, FieldName extends string> = (
   root: core.RootValueField<TypeName, FieldName>,
   args: core.ArgsValue<TypeName, FieldName>,
-  context: core.GetGen<'context'>,
+  ctx: core.GetGen<'context'>,
   info: GraphQLResolveInfo,
 ) => core.MaybePromise<FieldAuthenticationResolverReturnValue>
 
@@ -57,7 +57,7 @@ export type FieldAuthenticationPluginConfigIsLogged<
 > = (
   root: core.RootValueField<TypeName, FieldName>,
   args: core.ArgsValue<TypeName, FieldName>,
-  context: core.GetGen<'context'>,
+  ctx: core.GetGen<'context'>,
   info: GraphQLResolveInfo,
 ) => boolean | core.MaybePromise<boolean>
 
