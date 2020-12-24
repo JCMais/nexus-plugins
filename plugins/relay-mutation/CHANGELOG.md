@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-relay-mutation@0.0.5...@jcm/nexus-plugin-relay-mutation@0.1.0) (2020-12-24)
+
+### Features
+
+- upgrade dependencies and use nexus v1 instead of @nexus/schema ([2f27c77](https://github.com/JCMais/nexus-plugins/commit/2f27c77435060a89e89420ee7a35d9d6b67c2d15))
+
+### BREAKING CHANGES
+
+- You must be using GraphQL v15 and nexus v1 now.
+
 ## [0.0.5](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-relay-mutation@0.0.4...@jcm/nexus-plugin-relay-mutation@0.0.5) (2020-08-07)
 
 ### Bug Fixes

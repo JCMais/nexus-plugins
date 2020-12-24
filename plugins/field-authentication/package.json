@@ -1,6 +1,6 @@
 {
   "name": "@jcm/nexus-plugin-field-authentication",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Adds a new field config \"authentication\" that should be used to determine if the field should be resolved or not",
   "keywords": [
     "nexus",
