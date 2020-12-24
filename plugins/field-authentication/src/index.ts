@@ -1,7 +1,7 @@
-import { plugin, core } from '@nexus/schema'
+import { plugin, core } from 'nexus'
 import { GraphQLResolveInfo } from 'graphql'
 
-// Most of this code is inspired on the authorize plugin from @nexus/schema
+// Most of this code is inspired on the authorize plugin from nexus
 
 const fieldAuthenticationPluginResolverImport = core.printedGenTypingImport({
   module: '@jcm/nexus-plugin-field-authentication',
@@ -35,7 +35,7 @@ export type FieldAuthenticationResolverReturnValue =
   | [boolean, core.ResultValue<any, any>]
 
 export type FieldAuthenticationResolver<TypeName extends string, FieldName extends string> = (
-  root: core.RootValue<TypeName>,
+  root: core.RootValueField<TypeName, FieldName>,
   args: core.ArgsValue<TypeName, FieldName>,
   context: core.GetGen<'context'>,
   info: GraphQLResolveInfo,
@@ -55,7 +55,7 @@ export type FieldAuthenticationPluginConfigIsLogged<
   TypeName extends string,
   FieldName extends string
 > = (
-  root: core.RootValue<TypeName>,
+  root: core.RootValueField<TypeName, FieldName>,
   args: core.ArgsValue<TypeName, FieldName>,
   context: core.GetGen<'context'>,
   info: GraphQLResolveInfo,
@@ -195,13 +195,11 @@ export function fieldAuthenticationPlugin(pluginConfig: FieldAuthenticationPlugi
               return plugin.completeValue(
                 toComplete,
                 processAuthenticationResult.bind(undefined, isUserLogged),
-                // @ts-expect-error
                 (err) => {
                   ensureError(root, args, ctx, info)(err as Error)
                 },
               )
             },
-            // @ts-expect-error
             (err) => {
               ensureError(root, args, ctx, info)(err)
             },

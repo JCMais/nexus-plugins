@@ -1,8 +1,8 @@
-import { core, plugin, dynamicOutputMethod, objectType, inputObjectType, arg } from '@nexus/schema'
+import { core, plugin, dynamicOutputMethod, objectType, inputObjectType, arg, nonNull } from 'nexus'
 import { GraphQLResolveInfo } from 'graphql'
 
 type MutateAndGetPayloadFunction<TypeName extends string, FieldName extends string> = (
-  root: core.RootValue<TypeName>,
+  root: core.RootValueField<TypeName, FieldName>,
   input: core.ArgsValue<TypeName, FieldName>['input'],
   ctx: core.GetGen<'context'>,
   info: GraphQLResolveInfo,
@@ -41,7 +41,7 @@ const ucfirst = (text: string) =>
 export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}) => {
   const {
     nexusFieldName = 'relayMutation',
-    nexusSchemaImportId = '@nexus/schema',
+    nexusSchemaImportId = 'nexus',
     relayMutationPluginImportId = '@jcm/nexus-plugin-relay-mutation',
     defaultMutationInputTypeNameCreator = (text) => ucfirst(`${text}Input`),
     defaultMutationPayloadTypeNameCreator = (text) => ucfirst(`${text}Payload`),
@@ -111,9 +111,7 @@ export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}
                   definition(t2) {
                     inputFields && inputFields(t2)
 
-                    t2.string('clientMutationId', {
-                      nullable: true,
-                    })
+                    t2.nullable.string('clientMutationId')
                   },
                 }),
               )
@@ -126,9 +124,7 @@ export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}
                   definition(t2) {
                     outputFields && outputFields(t2)
 
-                    t2.string('clientMutationId', {
-                      nullable: true,
-                    })
+                    t2.nullable.string('clientMutationId')
                   },
                 }),
               )
@@ -136,12 +132,13 @@ export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}
 
             t.field(fieldName, {
               ...remainingFieldConfig,
-              type: payloadTypeName,
+              type: nonNull(payloadTypeName),
               args: {
-                input: arg({
-                  type: inputTypeName,
-                  required: true,
-                }),
+                input: nonNull(
+                  arg({
+                    type: inputTypeName,
+                  }),
+                ),
               },
               async resolve(root, { input }, ctx, info) {
                 const { clientMutationId } = input
@@ -164,9 +161,6 @@ export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}
           },
         }),
       )
-
-      // TODO: Deprecate this syntax
-      return { types: [] }
     },
   })
 }

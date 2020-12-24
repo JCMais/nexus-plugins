@@ -1,4 +1,4 @@
-import { plugin, core } from '@nexus/schema'
+import { plugin, core } from 'nexus'
 import {
   isLeafType,
   isWrappingType,
@@ -8,7 +8,7 @@ import {
 } from 'graphql'
 import type * as Agent from 'elastic-apm-node'
 
-// Most of this code is inspired on the authorize plugin from @nexus/schema
+// Most of this code is inspired on the authorize plugin from nexus
 
 const fieldDefTypes = core.printedGenTyping({
   optional: true,

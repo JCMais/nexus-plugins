@@ -1,6 +1,6 @@
 import { execute, parse, printType } from 'graphql'
 import { toGlobalId } from 'graphql-relay'
-import { makeSchema, objectType } from '@nexus/schema'
+import { makeSchema, objectType } from 'nexus'
 
 import { RelayNodeInterfacePluginConfig, relayNodeInterfacePlugin } from '../src'
 

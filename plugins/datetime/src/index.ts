@@ -5,7 +5,8 @@ import {
   objectType,
   stringArg,
   interfaceType,
-} from '@nexus/schema'
+  nonNull,
+} from 'nexus'
 
 import * as moment from 'moment-timezone'
 
@@ -32,7 +33,7 @@ export type DateTimePluginFieldConfig<
 export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
   const {
     dateTimeFieldName = 'dateTime',
-    nexusSchemaImportId = '@nexus/schema',
+    nexusSchemaImportId = 'nexus',
     dateTimePluginImportId = '@jcm/nexus-plugin-datetime',
   } = pluginConfig
 
@@ -67,17 +68,15 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
                 interfaceType({
                   name: 'DateTimeFieldInterface',
                   description: 'A object that represents an ISO datetime',
+                  resolveType(obj) {
+                    if (obj.iso) return 'DateTimeField'
+                    return null
+                  },
                   definition(t2) {
-                    t2.resolveType((obj) => {
-                      if (obj.iso) return 'DateTimeField'
-                      return null
-                    })
-                    t2.string('iso')
-                    t2.string('formatted', {
+                    t2.nonNull.string('iso')
+                    t2.nonNull.string('formatted', {
                       args: {
-                        format: stringArg({
-                          required: true,
-                        }),
+                        format: nonNull(stringArg()),
                         timezone: stringArg({
                           description: 'Timezone to format the ISO date, defaults to UTC',
                         }),
@@ -88,7 +87,7 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
                           : moment.utc(root.iso).format(args.format)
                       },
                     })
-                    t2.boolean('isAfter', {
+                    t2.nonNull.boolean('isAfter', {
                       args: {
                         iso: stringArg({
                           description: 'Defaults to the current time if not provided',
@@ -96,7 +95,7 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
                       },
                       resolve: (root, { iso }) => moment(root.iso).isAfter(iso || new Date()),
                     })
-                    t2.boolean('isBefore', {
+                    t2.nonNull.boolean('isBefore', {
                       args: {
                         iso: stringArg({
                           description: 'Defaults to the current time if not provided',
@@ -104,7 +103,7 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
                       },
                       resolve: (root, { iso }) => moment(root.iso).isBefore(iso || new Date()),
                     })
-                    t2.boolean('isSameOrAfter', {
+                    t2.nonNull.boolean('isSameOrAfter', {
                       args: {
                         iso: stringArg({
                           description: 'Defaults to the current time if not provided',
@@ -112,7 +111,7 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
                       },
                       resolve: (root, { iso }) => moment(root.iso).isSameOrAfter(iso || new Date()),
                     })
-                    t2.boolean('isSameOrBefore', {
+                    t2.nonNull.boolean('isSameOrBefore', {
                       args: {
                         iso: stringArg({
                           description: 'Defaults to the current time if not provided',
@@ -121,7 +120,7 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
                       resolve: (root, { iso }) =>
                         moment(root.iso).isSameOrBefore(iso || new Date()),
                     })
-                    t2.boolean('isSame', {
+                    t2.nonNull.boolean('isSame', {
                       args: {
                         iso: stringArg({
                           description: 'Defaults to the current time if not provided',
@@ -129,7 +128,7 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
                       },
                       resolve: (root, { iso }) => moment(root.iso).isSame(iso || new Date()),
                     })
-                    t2.boolean('isBetween', {
+                    t2.nonNull.boolean('isBetween', {
                       args: {
                         isoStart: stringArg({
                           description: 'Defaults to the start of the current day if not provided',
@@ -172,9 +171,6 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
           },
         }),
       )
-
-      // TODO: Deprecate this syntax
-      return { types: [] }
     },
   })
 }

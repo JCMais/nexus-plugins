@@ -1,5 +1,5 @@
 import { execute, parse, printSchema } from 'graphql'
-import { makeSchema, objectType } from '@nexus/schema'
+import { makeSchema, objectType } from 'nexus'
 
 import { DateTimePluginConfig, dateTimePlugin } from '../src'
 
@@ -27,17 +27,16 @@ const users = [
 const User = objectType({
   name: 'User',
   definition(t) {
-    t.id('id')
+    t.nonNull.id('id')
     // @ts-expect-error
-    t.dateTime('createdAt')
+    t.nonNull.dateTime('createdAt')
     // @ts-expect-error
-    t.dateTime('createdAt2', {
+    t.nonNull.dateTime('createdAt2', {
       dateTimeISOField: 'createdAt_other',
     })
     // @ts-expect-error
-    t.dateTime('createdAt3', {
+    t.nullable.dateTime('createdAt3', {
       field: 'createdAt',
-      nullable: true,
     })
   },
 })
@@ -96,9 +95,8 @@ const testSchema = (pluginConfig: DateTimePluginConfig, outputs = false) =>
         name: 'Query',
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         definition(t) {
-          t.field('users', {
+          t.nonNull.list.field('users', {
             type: User,
-            list: [false],
             resolve: () => users,
           })
         },

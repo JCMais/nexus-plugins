@@ -109,42 +109,15 @@ Object {
 `;
 
 exports[`dateTimePlugin basic behavior should work correctly 1`] = `
-"\\"\\"\\"Represents an ISO datetime that can be formatted in other formats\\"\\"\\"
-type DateTimeField implements DateTimeFieldInterface {
-  iso: String!
-  formatted(
-    format: String!
+"type Query {
+  users: [User]!
+}
 
-    \\"\\"\\"Timezone to format the ISO date, defaults to UTC\\"\\"\\"
-    timezone: String
-  ): String!
-  isAfter(
-    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
-    iso: String
-  ): Boolean!
-  isBefore(
-    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
-    iso: String
-  ): Boolean!
-  isSameOrAfter(
-    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
-    iso: String
-  ): Boolean!
-  isSameOrBefore(
-    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
-    iso: String
-  ): Boolean!
-  isSame(
-    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
-    iso: String
-  ): Boolean!
-  isBetween(
-    \\"\\"\\"Defaults to the start of the current day if not provided\\"\\"\\"
-    isoStart: String
-
-    \\"\\"\\"Defaults to the end of the current day if not provided\\"\\"\\"
-    isoEnd: String
-  ): Boolean!
+type User {
+  id: ID!
+  createdAt: DateTimeField!
+  createdAt2: DateTimeField!
+  createdAt3: DateTimeField
 }
 
 \\"\\"\\"A object that represents an ISO datetime\\"\\"\\"
@@ -185,15 +158,42 @@ interface DateTimeFieldInterface {
   ): Boolean!
 }
 
-type Query {
-  users: [User]!
-}
+\\"\\"\\"Represents an ISO datetime that can be formatted in other formats\\"\\"\\"
+type DateTimeField implements DateTimeFieldInterface {
+  iso: String!
+  formatted(
+    format: String!
 
-type User {
-  id: ID!
-  createdAt: DateTimeField!
-  createdAt2: DateTimeField!
-  createdAt3: DateTimeField
+    \\"\\"\\"Timezone to format the ISO date, defaults to UTC\\"\\"\\"
+    timezone: String
+  ): String!
+  isAfter(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isBefore(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSameOrAfter(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSameOrBefore(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isSame(
+    \\"\\"\\"Defaults to the current time if not provided\\"\\"\\"
+    iso: String
+  ): Boolean!
+  isBetween(
+    \\"\\"\\"Defaults to the start of the current day if not provided\\"\\"\\"
+    isoStart: String
+
+    \\"\\"\\"Defaults to the end of the current day if not provided\\"\\"\\"
+    isoEnd: String
+  ): Boolean!
 }
 "
 `;

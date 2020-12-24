@@ -1,7 +1,5 @@
-import * as path from 'path'
-
 import { execute, parse, printSchema } from 'graphql'
-import { makeSchema, mutationField, queryField } from '@nexus/schema'
+import { makeSchema, mutationField, queryField } from 'nexus'
 
 import {
   RelayMutationPluginConfig,
@@ -11,16 +9,12 @@ import {
 
 // @ts-ignore
 const inputFields = (t2) => {
-  t2.int('number1', {
-    required: true,
-  })
-  t2.int('number2', {
-    required: true,
-  })
+  t2.nonNull.int('number1')
+  t2.nonNull.int('number2')
 }
 // @ts-ignore
 const outputFields = (t2) => {
-  t2.int('result')
+  t2.nonNull.int('result')
 }
 
 const mutationCorrect = mutationField((t) => {
@@ -124,15 +118,15 @@ describe('relayMutationPlugin', () => {
     })
 
     // uncoment to test the types
-    it('should generate the types', () => {
-      testSchema({
-        outputs: {
-          typegen: path.join(__dirname, 'generated/types.out'),
-          schema: false,
-        },
-        shouldGenerateArtifacts: true,
-      })
-    })
+    // it('should generate the types', () => {
+    //   testSchema({
+    //     outputs: {
+    //       typegen: path.join(__dirname, 'generated/types.out'),
+    //       schema: false,
+    //     },
+    //     shouldGenerateArtifacts: true,
+    //   })
+    // })
 
     it('should resolve all fields correctly', async () => {
       const schema = testSchema()

@@ -22,12 +22,12 @@ type AddPayload {
   clientMutationId: String
 }
 
-type Mutation {
-  add(input: AddInput!): AddPayload!
-}
-
 type Query {
   ok: Boolean!
+}
+
+type Mutation {
+  add(input: AddInput!): AddPayload!
 }
 "
 `;

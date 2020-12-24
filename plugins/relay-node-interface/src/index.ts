@@ -1,4 +1,4 @@
-import { plugin, core, interfaceType, queryField, idArg } from '@nexus/schema'
+import { plugin, core, interfaceType, queryField, idArg, list, nonNull } from 'nexus'
 import { fromGlobalId } from 'graphql-relay'
 import { GraphQLResolveInfo } from 'graphql'
 
@@ -59,41 +59,44 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
               // resolveType is just one way to map objs -> to the graphql type they represent
               //  we could also have simply relied on isTypeOf on the GraphQLObjectType themselves
               //  but as relay uses this by default, let's keep using it
-              t.resolveType(resolveType)
             },
+            resolveType,
           }),
         )
 
         // node field
         builder.addType(
           queryField((t) => {
-            t.field('node', {
+            t.nullable.field('node', {
               type: 'Node',
-              nullable: true,
               args: {
-                id: idArg({
-                  required: true,
-                  description: 'The global ID of an object',
-                }),
+                id: nonNull(
+                  idArg({
+                    description: 'The global ID of an object',
+                  }),
+                ),
               },
               description: 'Fetches an object given its global ID',
               resolve: (_obj, { id }, context, info) => idFetcher(fromGlobalId(id), context, info),
             })
-          }),
+          }) as core.NexusExtendTypeDef<string>,
         )
 
         // nodes field
         builder.addType(
           queryField((t) => {
-            t.field('nodes', {
+            t.nonNull.list.field('nodes', {
               type: 'Node',
-              list: [false],
               args: {
-                ids: idArg({
-                  list: [true],
-                  required: true,
-                  description: 'The global IDs of objects',
-                }),
+                ids: nonNull(
+                  list(
+                    nonNull(
+                      idArg({
+                        description: 'The global IDs of objects',
+                      }),
+                    ),
+                  ),
+                ),
               },
               description: 'Fetches objects given their global IDs',
               resolve: (_obj, { ids }, context, info) =>
@@ -102,12 +105,9 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
                   ids.map((id) => Promise.resolve(idFetcher(idParser(id), context, info))),
                 ),
             })
-          }),
+          }) as core.NexusExtendTypeDef<string>,
         )
       }
-
-      // TODO: Deprecate this syntax
-      return { types: [] }
     },
   })
 }

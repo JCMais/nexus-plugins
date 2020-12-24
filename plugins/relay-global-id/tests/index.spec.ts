@@ -1,6 +1,6 @@
 import { execute, parse, printType } from 'graphql'
 import { fromGlobalId } from 'graphql-relay'
-import { makeSchema, objectType } from '@nexus/schema'
+import { makeSchema, objectType } from 'nexus'
 
 import {
   relayGlobalIdPlugin,
@@ -19,20 +19,20 @@ const User = objectType({
   name: 'User',
   definition(t) {
     // @ts-expect-error
-    t.relayGlobalId('id')
+    t.nonNull.relayGlobalId('id')
     // @ts-expect-error
-    t.relayGlobalId('id2', {
+    t.nonNull.relayGlobalId('id2', {
       field: 'idTwo',
       shouldAddRawId: false,
     })
 
     // @ts-expect-error
-    t.relayGlobalId('id3', {
+    t.nonNull.relayGlobalId('id3', {
       resolve: (root: typeof user) => root.idThree,
     })
 
     // @ts-expect-error
-    t.relayGlobalId('id4', {
+    t.nonNull.relayGlobalId('id4', {
       shouldAddRawId: 'rawIdFour',
     })
   },

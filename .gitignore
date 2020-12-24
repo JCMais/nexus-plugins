@@ -1,5 +1,7 @@
-node_modules/
-dist/
-dist-esm/
-coverage/
+**/node_modules/
+**/dist/
+**/dist-esm/
+**/coverage/
+**/generated/
 **/yarn-error.log
+

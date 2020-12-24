@@ -13,7 +13,7 @@
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-This is a collection of [`@nexus/schema`](https://github.com/graphql-nexus/schema) plugins.
+This is a collection of [`nexus`](https://github.com/graphql-nexus/schema) plugins.
 
 ## Plugins
 

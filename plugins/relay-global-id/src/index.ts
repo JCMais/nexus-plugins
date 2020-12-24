@@ -1,10 +1,10 @@
 import { GraphQLResolveInfo } from 'graphql'
-import { plugin, dynamicOutputMethod, core } from '@nexus/schema'
+import { plugin, dynamicOutputMethod, core } from 'nexus'
 
 import { toGlobalId } from 'graphql-relay'
 
 type RelayGlobalIdConfigResolveFunction<TypeName extends string, FieldName extends string> = (
-  root: core.RootValue<TypeName>,
+  root: core.RootValueField<TypeName, FieldName>,
   args: core.ArgsValue<TypeName, FieldName>,
   ctx: core.GetGen<'context'>,
   info: GraphQLResolveInfo,
@@ -84,7 +84,7 @@ export type RelayGlobalIdNexusFieldConfig<
 export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}) {
   const {
     nexusFieldName = 'relayGlobalId',
-    nexusSchemaImportId = '@nexus/schema',
+    nexusSchemaImportId = 'nexus',
     relayGlobalIdPluginImportId = '@jcm/nexus-plugin-relay-global-id',
     shouldAddRawId: shouldAddRawIdPluginConfig = true,
     field: fieldPluginConfig,
@@ -148,9 +148,6 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
           },
         }),
       )
-
-      // TODO: Deprecate this syntax
-      return { types: [] }
     },
   })
 }

@@ -1,5 +1,5 @@
 import { execute, parse } from 'graphql'
-import { makeSchema, objectType } from '@nexus/schema'
+import { makeSchema, objectType } from 'nexus'
 
 import { fieldAuthenticationPlugin, FieldAuthenticationPluginConfig } from '../src'
 
