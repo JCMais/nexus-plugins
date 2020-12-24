@@ -1,16 +1,6 @@
-import { GraphQLResolveInfo } from 'graphql'
 import { plugin, dynamicOutputMethod, core } from 'nexus'
 
 import { toGlobalId } from 'graphql-relay'
-
-type RelayGlobalIdConfigResolveFunction<TypeName extends string, FieldName extends string> = (
-  root: core.RootValueField<TypeName, FieldName>,
-  args: core.ArgsValue<TypeName, FieldName>,
-  ctx: core.GetGen<'context'>,
-  info: GraphQLResolveInfo,
-) =>
-  | core.MaybePromise<core.ResultValue<TypeName, FieldName>>
-  | core.MaybePromiseDeep<core.ResultValue<TypeName, FieldName>>
 
 export type RelayGlobalIdPluginConfig<
   TypeName extends string = any,
@@ -46,7 +36,7 @@ export type RelayGlobalIdPluginConfig<
    *
    * You can also set this in a per field basis
    */
-  resolve?: RelayGlobalIdConfigResolveFunction<TypeName, FieldName>
+  resolve?: core.FieldResolver<TypeName, FieldName>
 }
 
 export type RelayGlobalIdNexusFieldConfig<
@@ -78,13 +68,12 @@ export type RelayGlobalIdNexusFieldConfig<
   /**
    * You can use this to specificy your own resolve function for the ID
    */
-  resolve?: RelayGlobalIdConfigResolveFunction<TypeName, FieldName>
+  resolve?: core.FieldResolver<TypeName, FieldName>
 } & NexusGenPluginFieldConfig<TypeName, FieldName>
 
 export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}) {
   const {
     nexusFieldName = 'relayGlobalId',
-    nexusSchemaImportId = 'nexus',
     relayGlobalIdPluginImportId = '@jcm/nexus-plugin-relay-global-id',
     shouldAddRawId: shouldAddRawIdPluginConfig = true,
     field: fieldPluginConfig,
@@ -95,10 +84,6 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
     name: 'RelayGlobalId',
     description: 'add t.relayGlobalId(field) to the schema builder',
     fieldDefTypes: [
-      core.printedGenTypingImport({
-        module: nexusSchemaImportId,
-        bindings: ['core'],
-      }),
       core.printedGenTypingImport({
         module: relayGlobalIdPluginImportId,
         bindings: ['RelayGlobalIdNexusFieldConfig'],

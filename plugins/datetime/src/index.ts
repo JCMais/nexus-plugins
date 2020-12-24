@@ -33,7 +33,6 @@ export type DateTimePluginFieldConfig<
 export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
   const {
     dateTimeFieldName = 'dateTime',
-    nexusSchemaImportId = 'nexus',
     dateTimePluginImportId = '@jcm/nexus-plugin-datetime',
   } = pluginConfig
 
@@ -42,10 +41,6 @@ export function dateTimePlugin(pluginConfig: DateTimePluginConfig = {}) {
     description: 'add t.dateTime(field) to the schema builder',
     // we want to add a extension
     fieldDefTypes: [
-      core.printedGenTypingImport({
-        module: nexusSchemaImportId,
-        bindings: ['core'],
-      }),
       core.printedGenTypingImport({
         module: dateTimePluginImportId,
         bindings: ['DateTimePluginFieldConfig'],
