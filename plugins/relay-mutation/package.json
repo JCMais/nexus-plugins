@@ -1,6 +1,6 @@
 {
   "name": "@jcm/nexus-plugin-relay-mutation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Adds relayMutation(field, config) method to the nexus/schema builder to create Relay compatible mutations",
   "keywords": [
     "nexus",
