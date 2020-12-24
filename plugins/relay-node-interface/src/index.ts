@@ -77,7 +77,7 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
                 ),
               },
               description: 'Fetches an object given its global ID',
-              resolve: (_obj, { id }, context, info) => idFetcher(fromGlobalId(id), context, info),
+              resolve: (_obj, { id }, ctx, info) => idFetcher(fromGlobalId(id), ctx, info),
             })
           }) as core.NexusExtendTypeDef<string>,
         )
@@ -99,10 +99,10 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
                 ),
               },
               description: 'Fetches objects given their global IDs',
-              resolve: (_obj, { ids }, context, info) =>
+              resolve: (_obj, { ids }, ctx, info) =>
                 Promise.all(
                   // @ts-expect-error
-                  ids.map((id) => Promise.resolve(idFetcher(idParser(id), context, info))),
+                  ids.map((id) => Promise.resolve(idFetcher(idParser(id), ctx, info))),
                 ),
             })
           }) as core.NexusExtendTypeDef<string>,
