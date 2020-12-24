@@ -79,7 +79,6 @@ const getGraphQLFieldPath = (path?: ResponsePath): string =>
   (path
     ? [
         getGraphQLFieldPath(path.prev),
-        // @ts-expect-error
         path.prev ? path.key : `${path.typename}.${path.key}`,
       ].filter((v) => !!v)
     : []

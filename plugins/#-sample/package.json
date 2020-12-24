@@ -22,6 +22,7 @@
     "build:dist": "yarn -s clean:dist && tsc -p tsconfig.cjs.json --pretty && tsc -p tsconfig.esm.json --pretty",
     "clean:dist": "rimraf ./dist ./dist-esm",
     "lint": "eslint \"{src,tests}/**/*.ts\" -f eslint-formatter-friendly",
+    "pre-commit": "tsc -p tsconfig.esm.json --pretty",
     "prepare": "echo \"do nothing\"",
     "prepublishOnly": "yarn build:dist",
     "test": "jest",

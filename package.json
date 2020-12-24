@@ -10,12 +10,14 @@
     "format": "prettier --write \"**/*.ts\"  \"!**/dist/**\"  \"!**/dist-esm/**\"",
     "lint": "eslint \"plugins/**/*.ts\" -f eslint-formatter-friendly",
     "p": "lerna publish --conventional-commits",
+    "p:force:all": "lerna publish --force-publish=*",
+    "pre-commit": "lerna run --stream --sort pre-commit",
     "prepare": "lerna run --stream --sort prepare",
     "test": "jest"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && pre-commit"
     }
   },
   "lint-staged": {
