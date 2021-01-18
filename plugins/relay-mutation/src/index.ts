@@ -16,13 +16,30 @@ export type RelayMutationPluginConfig = {
   defaultMutationPayloadTypeNameCreator?: (mutationFieldName: string) => string
 }
 
+type FieldResolverWithArgParamChangedToInputType<T> = T extends (
+  source: infer S,
+  args: infer A,
+  ctx: infer C,
+  info: infer I,
+) => infer R
+  ? 'input' extends keyof A
+    ? (source: S, args: A['input'], ctx: C, info: I) => R
+    : (source: S, args: undefined, ctx: C, info: I) => R
+  : T
+
 export type RelayMutationNexusFieldConfig<
   TypeName extends string = any,
   FieldName extends string = any
 > = {
-  inputFields?: (t: core.InputDefinitionBlock<TypeName>) => void
-  outputFields?: (t: core.OutputDefinitionBlock<TypeName>) => void
-  mutateAndGetPayload: core.FieldResolver<TypeName, FieldName>
+  inputFields?: (
+    t: core.InputDefinitionBlock<core.GetGen3<'fieldTypeNames', TypeName, FieldName>>,
+  ) => void
+  outputFields?: (
+    t: core.OutputDefinitionBlock<core.GetGen3<'fieldTypeNames', TypeName, FieldName>>,
+  ) => void
+  mutateAndGetPayload: FieldResolverWithArgParamChangedToInputType<
+    core.FieldResolver<TypeName, FieldName>
+  >
 } & Omit<NexusGenPluginFieldConfig<TypeName, FieldName>, 'resolve' | 'type' | 'args'>
 
 const ucfirst = (text: string) =>
