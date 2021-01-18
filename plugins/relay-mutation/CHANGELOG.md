@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-relay-mutation@0.1.2...@jcm/nexus-plugin-relay-mutation@0.1.3) (2021-01-18)
+
+### Bug Fixes
+
+- **relay-mutation:** fix types for mutateAndGetPayload ([09d9db9](https://github.com/JCMais/nexus-plugins/commit/09d9db93b86e0c13bc7799bb1d5fbac8bbc391e4))
+
 ## [0.1.2](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-relay-mutation@0.1.1...@jcm/nexus-plugin-relay-mutation@0.1.2) (2020-12-24)
 
 **Note:** Version bump only for package @jcm/nexus-plugin-relay-mutation
