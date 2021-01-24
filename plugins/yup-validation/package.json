@@ -1,6 +1,6 @@
 {
   "name": "@jcm/nexus-plugin-yup-validation",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Allows to use Yup schemas to validate GraphQL arguments",
   "keywords": [
     "nexus",

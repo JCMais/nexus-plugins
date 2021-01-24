@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-relay-mutation@0.1.3...@jcm/nexus-plugin-relay-mutation@0.2.0) (2021-01-24)
+
+### Features
+
+- add yup-validation plugin ([c3f0c70](https://github.com/JCMais/nexus-plugins/commit/c3f0c703a71414e9a7b59ae5d0e7bf5edacf57fe))
+
 ## [0.1.3](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-relay-mutation@0.1.2...@jcm/nexus-plugin-relay-mutation@0.1.3) (2021-01-18)
 
 ### Bug Fixes
