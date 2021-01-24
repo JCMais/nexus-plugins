@@ -79,49 +79,49 @@ const testSchema = (pluginConfig: FieldAuthenticationPluginConfig, outputs = fal
           // no authentication check
           t.field('me1', {
             type: User,
-            resolve: (o) => user,
+            resolve: () => user,
           })
           // true authentication check
           t.field('me2', {
             type: User,
             // @ts-expect-error
             authentication: true,
-            resolve: (o) => user,
+            resolve: () => user,
           })
           // false authentication check
           t.field('me3', {
             type: User,
             // @ts-expect-error
             authentication: false,
-            resolve: (o) => user,
+            resolve: () => user,
           })
           // true authentication check - different return value
           t.field('me4', {
             type: User,
             // @ts-expect-error
             authentication: [true, loggedOutUser],
-            resolve: (o) => user,
+            resolve: () => user,
           })
           // false authentication check - different return value
           t.field('me5', {
             type: User,
             // @ts-expect-error
             authentication: [false, fakeUser],
-            resolve: (o) => user,
+            resolve: () => user,
           })
           // true authentication check - error
           t.field('me6', {
             type: User,
             // @ts-expect-error
             authentication: [true, new Error('Invalid - Unauthenticated')],
-            resolve: (o) => user,
+            resolve: () => user,
           })
           // false authentication check - error
           t.field('me7', {
             type: User,
             // @ts-expect-error
             authentication: [false, new Error('Invalid - Authenticated')],
-            resolve: (o) => user,
+            resolve: () => user,
           })
           // authentication function
           t.field('me8', {
@@ -203,7 +203,7 @@ describe('fieldAuthentication', () => {
         throwErrorOnFailedAuthenticationByDefault: true,
         defaultErrorMessage: 'You need to be authenticated',
         // @ts-expect-error
-        formatError: ({ error }) => "I'm not an error",
+        formatError: () => "I'm not an error",
       })
       const errorLogger = jest.fn()
       const data = await execute({

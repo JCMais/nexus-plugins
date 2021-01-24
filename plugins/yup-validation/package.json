@@ -1,15 +1,16 @@
 {
-  "name": "@jcm/nexus-plugin-field-authentication",
-  "version": "0.1.2",
-  "description": "Adds a new field config \"authentication\" that should be used to determine if the field should be resolved or not",
+  "name": "@jcm/nexus-plugin-yup-validation",
+  "version": "0.0.1",
+  "description": "Allows to use Yup schemas to validate GraphQL arguments",
   "keywords": [
     "nexus",
     "plugin",
     "nexus-plugin",
     "graphql",
-    "authorization"
+    "yup",
+    "validation"
   ],
-  "homepage": "https://github.com/JCMais/nexus-plugins/blob/plugins/field-authentication",
+  "homepage": "https://github.com/JCMais/nexus-plugins/blob/plugins/yup-validation",
   "license": "MIT",
   "author": "Jonathan Cardoso <me@jonathancardoso.com>",
   "main": "dist",
@@ -35,15 +36,18 @@
     "test:coverage:watch": "jest --coverage --watch",
     "test:watch": "jest --watch"
   },
+  "devDependencies": {
+    "yup": "^0.32.8"
+  },
   "peerDependencies": {
     "graphql": "^15",
-    "nexus": "^1.0.0"
+    "nexus": "^1.0.0",
+    "yup": "^0.32.8"
   },
   "engines": {
     "node": ">= 12"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "0082bf6ac10a514558fe7985bcb905e117485b86"
+  }
 }

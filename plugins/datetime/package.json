@@ -40,8 +40,8 @@
     "moment-timezone": "^0.5.31"
   },
   "peerDependencies": {
-    "@nexus/schema": "^0.14.0 || ^0.15.0",
-    "graphql": "^14.5.8 || ^15"
+    "graphql": "^15",
+    "nexus": "^1.0.0"
   },
   "engines": {
     "node": ">= 12"

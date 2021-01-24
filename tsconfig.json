@@ -4,20 +4,14 @@
     "module": "commonjs",
     // node v12 supports 100% of ES2019
     "target": "ES2019",
-    // "lib": [
-    //   "es2018",
-    //   // error Cannot find name 'AsyncIterable'.
-    //   "esnext.asynciterable"
-    // ],
     "sourceMap": true,
     "allowJs": false,
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
-    "typeRoots": ["./node_modules/@types"],
+    "skipLibCheck": true,
     "importHelpers": true,
-    // "esModuleInterop": true,
-    // "rootDir": "src",
+    // "typeRoots": ["./node_modules/@types"],
     "noUnusedLocals": true
   },
   "exclude": ["**/*.test.ts", "**/test.config.ts", "node_modules", "**/build/*", "**/*.d.ts"]

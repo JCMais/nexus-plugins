@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`yupValidation basic behavior should work correctly with default values 1`] = `
+Object {
+  "data": Object {
+    "addUser": Object {
+      "error": Object {
+        "details": Array [
+          Object {
+            "messages": Array [
+              "email must be at least 10 characters",
+              "email is a required field",
+            ],
+            "path": Array [
+              "email",
+            ],
+          },
+        ],
+        "message": "2 errors occurred",
+      },
+    },
+  },
+}
+`;
+
+exports[`yupValidation basic behavior should work with abortEarly = true 1`] = `
+Object {
+  "data": Object {
+    "addUser": Object {
+      "error": Object {
+        "details": Array [],
+        "message": "email must be at least 10 characters",
+      },
+    },
+  },
+}
+`;
