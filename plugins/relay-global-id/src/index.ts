@@ -1,6 +1,7 @@
 import { plugin, dynamicOutputMethod, core } from 'nexus'
 
 import { toGlobalId } from 'graphql-relay'
+import { NonNullConfig } from 'nexus/dist/core'
 
 export type RelayGlobalIdPluginConfig<
   TypeName extends string = any,
@@ -37,6 +38,8 @@ export type RelayGlobalIdPluginConfig<
    * You can also set this in a per field basis
    */
   resolve?: core.FieldResolver<TypeName, FieldName>
+
+  nonNullDefaults?: Omit<NonNullConfig, 'input'>
 }
 
 export type RelayGlobalIdNexusFieldConfig<
@@ -78,6 +81,7 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
     shouldAddRawId: shouldAddRawIdPluginConfig = true,
     field: fieldPluginConfig,
     resolve: resolvePluginConfig,
+    nonNullDefaults = { output: true },
   } = pluginConfig
 
   return plugin({
@@ -112,7 +116,7 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
               ...remainingFieldConfig
             } = fieldConfig
 
-            t.id(fieldName, {
+            ;(nonNullDefaults.output ? t.nonNull : t).id(fieldName, {
               ...remainingFieldConfig,
               async resolve(root, args, ctx, info) {
                 const resolved = resolveFn ? await resolveFn(root, args, ctx, info) : root[field]
@@ -121,7 +125,7 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
             })
 
             if (shouldAddRawId) {
-              t.id(
+              ;(nonNullDefaults.output ? t.nonNull : t).id(
                 typeof shouldAddRawId === 'string'
                   ? shouldAddRawId
                   : `raw${fieldName.charAt(0).toUpperCase()}${fieldName.slice(1)}`,
