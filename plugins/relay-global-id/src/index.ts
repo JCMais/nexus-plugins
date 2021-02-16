@@ -96,7 +96,7 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
           name: nexusFieldName,
           typeDefinition: `<FieldName extends string>(
             fieldName: FieldName, 
-            config: RelayGlobalIdNexusFieldConfig<TypeName, FieldName>
+            config?: RelayGlobalIdNexusFieldConfig<TypeName, FieldName>
           ): void`,
           factory({ typeName: parentTypeName, typeDef: t, args: factoryArgs }) {
             const [fieldName, fieldConfig = {}] = factoryArgs as [
