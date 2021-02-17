@@ -1,7 +1,6 @@
 import { plugin, dynamicOutputMethod, core } from 'nexus'
 
 import { toGlobalId } from 'graphql-relay'
-import { NonNullConfig } from 'nexus/dist/core'
 
 export type RelayGlobalIdPluginConfig<
   TypeName extends string = any,
@@ -39,7 +38,7 @@ export type RelayGlobalIdPluginConfig<
    */
   resolve?: core.FieldResolver<TypeName, FieldName>
 
-  nonNullDefaults?: Omit<NonNullConfig, 'input'>
+  nonNullDefaults?: Omit<core.NonNullConfig, 'input'>
 }
 
 export type RelayGlobalIdNexusFieldConfig<

@@ -1,7 +1,6 @@
 import { plugin, core, interfaceType, queryField, idArg, list, nonNull } from 'nexus'
 import { fromGlobalId } from 'graphql-relay'
 import { GraphQLResolveInfo } from 'graphql'
-import { NonNullConfig } from 'nexus/dist/core'
 
 export type RelayNodeInterfacePluginConfig = {
   idFetcher: (
@@ -14,7 +13,7 @@ export type RelayNodeInterfacePluginConfig = {
    * Used to parse the ID before calling idFetcher - By default this calls fromGlobalId from graphql-relay
    */
   idParser?: (id: string) => any
-  nonNullDefaults?: NonNullConfig
+  nonNullDefaults?: core.NonNullConfig
 }
 
 // Pretty much based on nodeDefinitions function from
@@ -58,7 +57,7 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
             name: 'Node',
             description: 'An object with a global ID',
             definition: (t) => {
-              ;(nonNullDefaults?.output ? t.nonNull : t.nullable).id('id', {
+              ;(nonNullDefaults.output ? t.nonNull : t.nullable).id('id', {
                 description: 'The global ID of the object.',
               })
 
@@ -77,7 +76,7 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
             t.nullable.field('node', {
               type: 'Node',
               args: {
-                id: (nonNullDefaults?.input ? nonNull : (v: any) => v)(
+                id: (nonNullDefaults.input ? nonNull : (v: any) => v)(
                   idArg({
                     description: 'The global ID of an object',
                   }),
