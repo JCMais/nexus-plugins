@@ -3,8 +3,12 @@ name: test-field-authentication
 env:
   PROJECT_NAME: field-authentication
 
-# This workflow is triggered on pushes to the repository.
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/test-plugin-field-authentication.yaml'
+      - 'plugins/field-authentication/**'
+      - 'codecov.yml'
   push:
     paths:
       - '.github/workflows/test-plugin-field-authentication.yaml'

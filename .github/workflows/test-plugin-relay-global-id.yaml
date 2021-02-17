@@ -3,8 +3,12 @@ name: test-relay-global-id
 env:
   PROJECT_NAME: relay-global-id
 
-# This workflow is triggered on pushes to the repository.
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/test-plugin-relay-global-id.yaml'
+      - 'plugins/relay-global-id/**'
+      - 'codecov.yml'
   push:
     paths:
       - '.github/workflows/test-plugin-relay-global-id.yaml'

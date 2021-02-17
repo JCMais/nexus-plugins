@@ -3,8 +3,12 @@ name: test-relay-mutation
 env:
   PROJECT_NAME: relay-mutation
 
-# This workflow is triggered on pushes to the repository.
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/test-plugin-relay-mutation.yaml'
+      - 'plugins/relay-mutation/**'
+      - 'codecov.yml'
   push:
     paths:
       - '.github/workflows/test-plugin-relay-mutation.yaml'

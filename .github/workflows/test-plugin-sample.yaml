@@ -3,8 +3,12 @@ name: test-sample
 env:
   PROJECT_NAME: sample
 
-# This workflow is triggered on pushes to the repository.
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/test-plugin-sample.yaml'
+      - 'plugins/#-sample/**'
+      - 'codecov.yml'
   push:
     paths:
       - '.github/workflows/test-plugin-sample.yaml'

@@ -3,8 +3,12 @@ name: test-datetime
 env:
   PROJECT_NAME: datetime
 
-# This workflow is triggered on pushes to the repository.
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/test-plugin-datetime.yaml'
+      - 'plugins/datetime/**'
+      - 'codecov.yml'
   push:
     paths:
       - '.github/workflows/test-plugin-datetime.yaml'

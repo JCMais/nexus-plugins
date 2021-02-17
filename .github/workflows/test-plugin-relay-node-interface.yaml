@@ -3,8 +3,12 @@ name: test-relay-node-interface
 env:
   PROJECT_NAME: relay-node-interface
 
-# This workflow is triggered on pushes to the repository.
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/test-plugin-relay-node-interface.yaml'
+      - 'plugins/relay-node-interface/**'
+      - 'codecov.yml'
   push:
     paths:
       - '.github/workflows/test-plugin-relay-node-interface.yaml'
