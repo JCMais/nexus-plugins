@@ -19,12 +19,7 @@ export type RelayNodeInterfacePluginConfig = {
 // Pretty much based on nodeDefinitions function from
 //  relay: https://github.com/graphql/graphql-relay-js/blob/8f4ed1ad35805ef233ad9fd1af33abb9c0cad35a/src/node/node.js
 export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginConfig) {
-  const {
-    idFetcher,
-    resolveType,
-    idParser = fromGlobalId,
-    nonNullDefaults = { input: true, output: true },
-  } = pluginConfig
+  const { idFetcher, resolveType, idParser = fromGlobalId, nonNullDefaults } = pluginConfig
 
   if (!idFetcher) {
     throw new Error('idFetcher option is required for relayNodeInterfacePlugin')
@@ -57,7 +52,7 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
             name: 'Node',
             description: 'An object with a global ID',
             definition: (t) => {
-              ;(nonNullDefaults.output ? t.nonNull : t.nullable).id('id', {
+              ;(nonNullDefaults ? (nonNullDefaults.output ? t.nonNull : t.nullable) : t).id('id', {
                 description: 'The global ID of the object.',
               })
 
@@ -76,7 +71,8 @@ export function relayNodeInterfacePlugin(pluginConfig: RelayNodeInterfacePluginC
             t.nullable.field('node', {
               type: 'Node',
               args: {
-                id: (nonNullDefaults.input ? nonNull : (v: any) => v)(
+                // defaults to nonNull to keep it backward compatible
+                id: (nonNullDefaults ? (nonNullDefaults.input ? nonNull : (v: any) => v) : nonNull)(
                   idArg({
                     description: 'The global ID of an object',
                   }),

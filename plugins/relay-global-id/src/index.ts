@@ -80,7 +80,7 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
     shouldAddRawId: shouldAddRawIdPluginConfig = true,
     field: fieldPluginConfig,
     resolve: resolvePluginConfig,
-    nonNullDefaults = { output: true },
+    nonNullDefaults,
   } = pluginConfig
 
   return plugin({
@@ -115,16 +115,19 @@ export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}
               ...remainingFieldConfig
             } = fieldConfig
 
-            ;(nonNullDefaults.output ? t.nonNull : t).id(fieldName, {
-              ...remainingFieldConfig,
-              async resolve(root, args, ctx, info) {
-                const resolved = resolveFn ? await resolveFn(root, args, ctx, info) : root[field]
-                return resolved && toGlobalId(typeName, resolved)
+            ;(nonNullDefaults ? (nonNullDefaults.output ? t.nonNull : t.nullable) : t).id(
+              fieldName,
+              {
+                ...remainingFieldConfig,
+                async resolve(root, args, ctx, info) {
+                  const resolved = resolveFn ? await resolveFn(root, args, ctx, info) : root[field]
+                  return resolved && toGlobalId(typeName, resolved)
+                },
               },
-            })
+            )
 
             if (shouldAddRawId) {
-              ;(nonNullDefaults.output ? t.nonNull : t).id(
+              ;(nonNullDefaults ? (nonNullDefaults.output ? t.nonNull : t.nullable) : t).id(
                 typeof shouldAddRawId === 'string'
                   ? shouldAddRawId
                   : `raw${fieldName.charAt(0).toUpperCase()}${fieldName.slice(1)}`,
