@@ -31,6 +31,7 @@ export type RelayMutationNexusFieldConfig<
   TypeName extends string = any,
   FieldName extends string = any
 > = {
+  description?: string
   inputFields?: (
     t: core.InputDefinitionBlock<core.GetGen3<'fieldTypeNames', TypeName, FieldName>>,
   ) => void
