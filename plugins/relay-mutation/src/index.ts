@@ -49,7 +49,7 @@ const ucfirst = (text: string) =>
 export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}) => {
   const {
     nexusFieldName = 'relayMutation',
-    relayMutationPluginImportId = '@jcm/nexus-plugin-relay-mutation',
+    relayMutationPluginImportId = 'sltx-nexus-plugin-relay-mutation',
     defaultMutationInputTypeNameCreator = (text) => ucfirst(`${text}Input`),
     defaultMutationPayloadTypeNameCreator = (text) => ucfirst(`${text}Payload`),
   } = pluginConfig
