@@ -1,5 +1,5 @@
 {
-  "packages": ["plugins/*"],
+  "packages": ["plugins/relay-global-id", "plugins/relay-mutation", "plugins/relay-node-interface"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent"
