@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/passionkind/nexus-plugins/compare/sltx-nexus-plugin-relay-mutation@0.3.0...sltx-nexus-plugin-relay-mutation@0.3.1) (2021-06-05)
+
+**Note:** Version bump only for package sltx-nexus-plugin-relay-mutation
+
+# 0.3.0 (2021-06-05)
+
+### Bug Fixes
+
+- allow optional description for relay mutation plugin ([88c5e71](https://github.com/passionkind/nexus-plugins/commit/88c5e713b20591dd4fd785ba575aa26a6d463dac))
+- **mutation:** fix type of input argument for the mutateAndGetPayload function ([f1cdff9](https://github.com/passionkind/nexus-plugins/commit/f1cdff9fa341cec5a9027acc103f6f4d2cae4fd9))
+- **relay-mutation:** fix types for mutateAndGetPayload ([09d9db9](https://github.com/passionkind/nexus-plugins/commit/09d9db93b86e0c13bc7799bb1d5fbac8bbc391e4))
+- **relay-mutation:** make input/payload types follow CamelCase naming ([62c6336](https://github.com/passionkind/nexus-plugins/commit/62c63361141b145f2e91799621e4bb62ed88a01b))
+- **relay-mutation:** remove tests file from tsconfig.json ([3c8ae65](https://github.com/passionkind/nexus-plugins/commit/3c8ae653de95df9ca454cbaabfd2e5d999f0add8))
+
+### Features
+
+- add relay-mutation plugin ([7f17137](https://github.com/passionkind/nexus-plugins/commit/7f17137e9bf974b157a14731a45034de9c261cc3))
+- add yup-validation plugin ([c3f0c70](https://github.com/passionkind/nexus-plugins/commit/c3f0c703a71414e9a7b59ae5d0e7bf5edacf57fe))
+- upgrade dependencies and use nexus v1 instead of @nexus/schema ([2f27c77](https://github.com/passionkind/nexus-plugins/commit/2f27c77435060a89e89420ee7a35d9d6b67c2d15))
+
+### BREAKING CHANGES
+
+- You must be using GraphQL v15 and nexus v1 now.
+
 # [0.2.0](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-relay-mutation@0.1.3...@jcm/nexus-plugin-relay-mutation@0.2.0) (2021-01-24)
 
 ### Features

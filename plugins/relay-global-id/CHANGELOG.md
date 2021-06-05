@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/passionkind/nexus-plugins/compare/sltx-nexus-plugin-relay-global-id@0.3.0...sltx-nexus-plugin-relay-global-id@0.3.1) (2021-06-05)
+
+**Note:** Version bump only for package sltx-nexus-plugin-relay-global-id
+
+
+
+
+
+# 0.3.0 (2021-06-05)
+
+
+### Bug Fixes
+
+* add publishConfig to package.json ([8444527](https://github.com/passionkind/nexus-plugins/commit/8444527c32502e5b91369035cf68e8fa44366d6b))
+* backward compatibility in relay-global-id and relay-node-interface plugins ([6b29ef9](https://github.com/passionkind/nexus-plugins/commit/6b29ef948cf2892d099f5e514f8b6c3d83baf61e))
+* fix datetime and relay-global-id to pass extra field configs back to nexus schema ([86d7bfb](https://github.com/passionkind/nexus-plugins/commit/86d7bfb5b0d3e9fecfd0ad5b59c16c9821a07817))
+* stuff ([4fcae7d](https://github.com/passionkind/nexus-plugins/commit/4fcae7d93f09eaa7b4fcdd0b4a3c43f2666e0d1d))
+* versions on package.json to 0.0.0 ([49283b5](https://github.com/passionkind/nexus-plugins/commit/49283b521f7dc14ea877f96b4e60665d890b736b))
+
+
+### Features
+
+* add yup-validation plugin ([c3f0c70](https://github.com/passionkind/nexus-plugins/commit/c3f0c703a71414e9a7b59ae5d0e7bf5edacf57fe))
+* allow nonNullDefaults plugin config on relay plugins ([#5](https://github.com/passionkind/nexus-plugins/issues/5)) ([027dff9](https://github.com/passionkind/nexus-plugins/commit/027dff99b85910de0400b4b9dadbe72ef537f09b))
+* upgrade dependencies and use nexus v1 instead of  @nexus/schema ([2f27c77](https://github.com/passionkind/nexus-plugins/commit/2f27c77435060a89e89420ee7a35d9d6b67c2d15))
+
+
+### BREAKING CHANGES
+
+* You must be using GraphQL v15 and nexus v1 now.
+
+
+
+
+
 # [0.2.0](https://github.com/JCMais/nexus-plugins/compare/@jcm/nexus-plugin-relay-global-id@0.1.2...@jcm/nexus-plugin-relay-global-id@0.2.0) (2021-01-24)
 
 ### Features

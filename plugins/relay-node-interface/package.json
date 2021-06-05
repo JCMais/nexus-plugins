@@ -1,6 +1,6 @@
 {
-  "name": "@jcm/nexus-plugin-relay-node-interface",
-  "version": "0.2.0",
+  "name": "sltx-nexus-plugin-relay-node-interface",
+  "version": "0.3.0",
   "description": "Creates the Relay Node interface and add node/nodes fields to the Query type",
   "keywords": [
     "nexus",

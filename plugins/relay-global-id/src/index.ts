@@ -76,7 +76,7 @@ export type RelayGlobalIdNexusFieldConfig<
 export function relayGlobalIdPlugin(pluginConfig: RelayGlobalIdPluginConfig = {}) {
   const {
     nexusFieldName = 'relayGlobalId',
-    relayGlobalIdPluginImportId = '@jcm/nexus-plugin-relay-global-id',
+    relayGlobalIdPluginImportId = 'sltx-nexus-plugin-relay-global-id',
     shouldAddRawId: shouldAddRawIdPluginConfig = true,
     field: fieldPluginConfig,
     resolve: resolvePluginConfig,

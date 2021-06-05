@@ -31,6 +31,7 @@ export type RelayMutationNexusFieldConfig<
   TypeName extends string = any,
   FieldName extends string = any
 > = {
+  description?: string
   inputFields?: (
     t: core.InputDefinitionBlock<core.GetGen3<'fieldTypeNames', TypeName, FieldName>>,
   ) => void
@@ -48,7 +49,7 @@ const ucfirst = (text: string) =>
 export const relayMutationPlugin = (pluginConfig: RelayMutationPluginConfig = {}) => {
   const {
     nexusFieldName = 'relayMutation',
-    relayMutationPluginImportId = '@jcm/nexus-plugin-relay-mutation',
+    relayMutationPluginImportId = 'sltx-nexus-plugin-relay-mutation',
     defaultMutationInputTypeNameCreator = (text) => ucfirst(`${text}Input`),
     defaultMutationPayloadTypeNameCreator = (text) => ucfirst(`${text}Payload`),
   } = pluginConfig
