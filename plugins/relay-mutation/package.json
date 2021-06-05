@@ -1,6 +1,6 @@
 {
   "name": "sltx-nexus-plugin-relay-mutation",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Adds relayMutation(field, config) method to the nexus/schema builder to create Relay compatible mutations",
   "keywords": [
     "nexus",
